@@ -1,20 +1,6 @@
-const reviews = [
-    {
-        title: 'Review title',
-        desc: 'Review description',
-        rating: 5,
-    },
-    {
-        title: 'Review 2 title',
-        desc: 'Review 2 description',
-        rating: 3,
-    },
-    {
-        title: 'Review 3 title',
-        desc: 'Review 3 description',
-        rating: 4,
-    },
-];
+const LOCAL_STORAGE_KEY = 'reviews';
+
+const reviews = loadFromLocalStorage() || [];
 
 document.addEventListener('DOMContentLoaded', () => {
     renderReviews();
@@ -30,6 +16,8 @@ function renderReviews() {
     reviews.forEach((review) => {
         reviewsElement.appendChild(createReviewItem(review));
     });
+
+    saveToLocalStorage(reviews);
 }
 
 function createReviewItem(review) {
@@ -65,4 +53,14 @@ function handleAddReview() {
     document.getElementById('review-title').value = ""; // Clear title input
     document.getElementById('review').value = ""; // Clear textarea
     document.getElementById('rating').value = ""; // Clear rating input
+}
+
+function saveToLocalStorage(reviewList) {
+    const reviewListString = JSON.stringify(reviewList);
+    localStorage.setItem(LOCAL_STORAGE_KEY, reviewListString);
+}
+
+function loadFromLocalStorage() {
+    const reviewListString = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return JSON.parse(reviewListString);
 }
