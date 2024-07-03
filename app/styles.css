@@ -92,6 +92,10 @@ header {
         margin-bottom: 1rem;
     }
 
+    h4 {
+        text-align: center;
+    }
+
     label {
         display: block;
         margin-bottom: 0.3rem;
@@ -190,6 +194,9 @@ header {
 
 .stars-rating {
     display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .rating-input {
@@ -226,6 +233,35 @@ header {
 
 .rating-input:hover ~ .rating-label .rating-icon {
     --current-color: var(--text-color);
+}
+
+.review-rating {
+    .rating-icon {
+        --current-color: var(--text-color);
+
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    &.rating-5 .rating-icon {
+        --current-color: var(--primary-color);
+    }
+
+    &.rating-4 .rating-icon:nth-child(-n + 4) {
+        --current-color: var(--primary-color);
+    }
+
+    &.rating-3 .rating-icon:nth-child(-n + 3) {
+        --current-color: var(--primary-color);
+    }
+
+    &.rating-2 .rating-icon:nth-child(-n + 2) {
+        --current-color: var(--primary-color);
+    }
+
+    &.rating-1 .rating-icon:nth-child(-n + 1) {
+        --current-color: var(--primary-color);
+    }
 }
 
 footer {

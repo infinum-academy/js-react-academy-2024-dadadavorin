@@ -27,7 +27,7 @@ function createReviewItem(review, index) {
 
     reviewItem.querySelector('.review-title').textContent = review.title;
     reviewItem.querySelector('.review-desc').textContent = review.desc;
-    reviewItem.querySelector('.rating').textContent = review.rating;
+    reviewItem.querySelector('.review-rating').classList.add(`rating-${review.rating}`);
     reviewItem.querySelector('.delete-review').addEventListener('click', () => handleDeleteReview(index));
 
     return reviewItem;
