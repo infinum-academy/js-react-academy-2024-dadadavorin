@@ -200,8 +200,8 @@ header {
 }
 
 .rating-input {
-    position: absolute !important;
-    left: -9999px !important;
+    position: absolute;
+    left: -9999px;
 }
 
 .rating-input--none {
