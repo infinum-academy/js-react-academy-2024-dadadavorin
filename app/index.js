@@ -13,20 +13,21 @@ function renderReviews() {
     const reviewsElement = document.querySelector('.reviews ul');
     reviewsElement.innerHTML = '';
 
-    reviews.forEach((review) => {
-        reviewsElement.appendChild(createReviewItem(review));
+    reviews.forEach((review, index) => {
+        reviewsElement.appendChild(createReviewItem(review, index));
     });
 
     saveToLocalStorage(reviews);
 }
 
-function createReviewItem(review) {
+function createReviewItem(review, index) {
     const template = document.querySelector('template');
     const reviewItem = template.content.cloneNode(true);
 
     reviewItem.querySelector('.review-title').textContent = review.title;
     reviewItem.querySelector('.review-desc').textContent = review.desc;
     reviewItem.querySelector('.rating').textContent = review.rating;
+    reviewItem.querySelector('.delete-review').addEventListener('click', () => handleDeleteReview(index));
 
     return reviewItem;
 }
@@ -53,6 +54,11 @@ function handleAddReview() {
     document.getElementById('review-title').value = ""; // Clear title input
     document.getElementById('review').value = ""; // Clear textarea
     document.getElementById('rating').value = ""; // Clear rating input
+}
+
+function handleDeleteReview(index) {
+    reviews.splice(index, 1);
+    renderReviews();
 }
 
 function saveToLocalStorage(reviewList) {
