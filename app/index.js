@@ -17,6 +17,7 @@ function renderReviews() {
         reviewsElement.appendChild(createReviewItem(review, index));
     });
 
+    updateAverageRating();
     saveToLocalStorage(reviews);
 }
 
@@ -59,6 +60,12 @@ function handleAddReview() {
 function handleDeleteReview(index) {
     reviews.splice(index, 1);
     renderReviews();
+}
+
+function updateAverageRating() {
+    const totalRatings = reviews.reduce((acc, review) => acc + review.rating, 0);
+    const averageRating = (totalRatings / reviews.length).toFixed(1);
+    document.querySelector('.rating-sum-value').textContent = averageRating;
 }
 
 function saveToLocalStorage(reviewList) {
