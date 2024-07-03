@@ -36,7 +36,7 @@ function createReviewItem(review, index) {
 function handleAddReview() {
     const reviewTitle = document.getElementById('review-title').value.trim();
     const reviewContent = document.getElementById('review').value.trim();
-    const reviewRating = parseInt(document.getElementById('rating').value.trim(), 10);
+    const reviewRating = parseInt(document.querySelector('input[name="rating"]:checked').value, 10);
 
     if (!reviewTitle || !reviewContent || reviewRating < 1 || reviewRating > 5) {
         alert("Please enter a valid review title, description, and rating between 1 and 5.");
@@ -54,7 +54,8 @@ function handleAddReview() {
 
     document.getElementById('review-title').value = ""; // Clear title input
     document.getElementById('review').value = ""; // Clear textarea
-    document.getElementById('rating').value = ""; // Clear rating input
+    document.querySelector('input[name="rating"]:checked').checked = false; // Clear rating input
+    document.getElementById('rating-none').checked = true; // Reset rating to none
 }
 
 function handleDeleteReview(index) {
