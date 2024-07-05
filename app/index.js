@@ -64,6 +64,11 @@ function handleDeleteReview(index) {
 }
 
 function updateAverageRating() {
+    if (reviews.length === 0) {
+        document.querySelector('.rating-sum-value').textContent = '0.0';
+        return;
+    }
+
     const totalRatings = reviews.reduce((acc, review) => acc + review.rating, 0);
     const averageRating = (totalRatings / reviews.length).toFixed(1);
     document.querySelector('.rating-sum-value').textContent = averageRating;
