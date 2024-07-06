@@ -1,15 +1,12 @@
 "use client";
 
-import { Heading, Box } from "@chakra-ui/react";
+import styles from "./page.module.css";
+import { ShowDetailsContainer } from "@/components/features/shows/ShowDetails";
 
 export default function Home() {
   return (
-    <Box display="flex" justifyContent="center">
-      <Box padding={10} backgroundColor="black" maxWidth="960px" flexGrow="1">
-        <Heading display="flex" justifyContent="center" color="white">
-          TV Shows
-        </Heading>
-      </Box>
-    </Box>
+    <main className={styles.main}>
+      <ShowDetailsContainer />
+    </main>
   );
 }
