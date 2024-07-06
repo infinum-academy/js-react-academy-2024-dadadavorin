@@ -1,8 +1,9 @@
 "use client";
-import { Text, Box } from "@chakra-ui/react";
-import { Fragment } from "react";
-import { IReviewList } from "@/typings/Review.type";
+import { Text, Box, Show } from "@chakra-ui/react";
+import { Fragment, useState } from "react";
+import { IReviewList, IReview } from "@/typings/Review.type";
 import { ReviewList } from "../review/ReviewList";
+import { ShowReviewForm } from "./ShowReviewForm";
 
 const mockReviewList: IReviewList = {
   reviews: [
@@ -25,6 +26,15 @@ const mockReviewList: IReviewList = {
 };
 
 export const ReviewListContainer = () => {
+  const [reviewList, setReviewList] = useState(mockReviewList);
+
+  const addShowReview = (review: IReview) => {
+    const newReviewList = {
+      reviews: [...reviewList.reviews, review],
+    };
+    setReviewList(newReviewList);
+  };
+
   return (
     <Box
       bg="gray.200"
@@ -34,7 +44,8 @@ export const ReviewListContainer = () => {
       width="100%"
       marginBlock="20"
     >
-      <ReviewList reviewList={mockReviewList} />
+      <ShowReviewForm onAdd={addShowReview} />
+      <ReviewList reviewList={reviewList} />
     </Box>
   );
 };
