@@ -1,7 +1,7 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
 import styles from "./show-details.module.css";
-import { IShow } from "@/typings/show";
+import { IShow } from "@/typings/Show.type";
 import { Card, CardBody, Image, Heading, Text, Box } from "@chakra-ui/react";
 
 const showDetails: IShow = {

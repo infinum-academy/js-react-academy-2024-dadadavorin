@@ -5,16 +5,16 @@ import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 
 const colors = {
   gray: {
-    300: "#1f1f1f",
-    200: "#3e3e3e",
-    100: "#2c2c2c",
+    300: "var(--gray-300)",
+    200: "var(--gray-200)",
+    100: "var(--gray-100)",
   },
   white: {
-    100: "#f5f5f5",
+    100: "var(--white-100)",
   },
   primary: {
-    100: "#f5c518",
-    200: "#daaf16",
+    100: "var(--primary-100)",
+    200: "var(--primary-200)",
   },
 };
 
