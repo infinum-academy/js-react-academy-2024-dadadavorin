@@ -9,7 +9,7 @@ import {
   NumberDecrementStepper,
   Heading,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { IReview } from "@/typings/Review.type";
 
 interface IReviewFormProps {
@@ -42,7 +42,6 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
     // Clear the form inputs
     if (titleInputRef.current) titleInputRef.current.value = "";
     if (commentInputRef.current) commentInputRef.current.value = "";
-    if (ratingInputRef.current) ratingInputRef.current.value = ""; // Reset to default value
   };
 
   return (

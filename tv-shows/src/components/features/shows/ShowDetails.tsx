@@ -1,6 +1,6 @@
 "use client";
 import styles from "./show-details.module.css";
-import { IShow } from "@/typings/Show.type";
+import { IShow, IShowRating } from "@/typings/Show.type";
 import { Card, CardBody, Image, Heading, Text, Box } from "@chakra-ui/react";
 
 const showDetails: IShow = {
@@ -8,12 +8,11 @@ const showDetails: IShow = {
   description:
     "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
   imageUrl: "/images/interstellar.webp",
-  averageRating: 4.7,
 };
 
-export const ShowDetailsContainer = () => {
+export const ShowDetailsContainer = ({ averageRating }: IShowRating) => {
   return (
-    <Box maxW="960px">
+    <>
       <Card backgroundColor="gray.200">
         <CardBody>
           <Image
@@ -31,25 +30,26 @@ export const ShowDetailsContainer = () => {
           <Text color="white.100" marginBlockEnd="5">
             {showDetails.description}
           </Text>
-          <Text
+          <Box
             color="white.100"
             marginBlockEnd="5"
             textAlign="right"
             fontSize="large"
           >
-            {showDetails.averageRating && (
+            {averageRating ? (
               <div>
                 <span>Rating: </span>
                 <span className={styles.showRatingValue}>
-                  {showDetails.averageRating}
+                  {averageRating.toFixed(1)}
                 </span>
                 <span> / 5</span>
               </div>
+            ) : (
+              "No rating"
             )}
-            {!showDetails.averageRating && "No rating"}
-          </Text>
+          </Box>
         </CardBody>
       </Card>
-    </Box>
+    </>
   );
 };
