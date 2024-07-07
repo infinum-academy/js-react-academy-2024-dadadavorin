@@ -1,14 +1,4 @@
-import {
-  Button,
-  Flex,
-  Input,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Heading,
-} from "@chakra-ui/react";
+import { Button, Flex, Input, Heading, Textarea } from "@chakra-ui/react";
 import { useRef } from "react";
 import { IReview } from "@/typings/Review.type";
 import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
@@ -19,13 +9,16 @@ interface IReviewFormProps {
 
 export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
   const titleInputRef = useRef<HTMLInputElement>(null);
-  const commentInputRef = useRef<HTMLInputElement>(null);
-  const ratingInputRef = useRef<HTMLInputElement>(null);
+  const commentInputRef = useRef<HTMLTextAreaElement>(null);
 
   const onClickHandler = () => {
     const titleValue = titleInputRef.current?.value || "";
     const commentValue = commentInputRef.current?.value || "";
-    const ratingValue = Number(ratingInputRef.current?.value) || 1;
+
+    const ratingElement = document.querySelector(
+      'input[name="rating"]:checked'
+    ) as HTMLInputElement | null;
+    const ratingValue = ratingElement ? parseInt(ratingElement.value, 10) : 0;
 
     if (!titleValue || !commentValue || !ratingValue) {
       alert("Please enter your review title, comment and rating.");
@@ -43,6 +36,14 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
     // Clear the form inputs
     if (titleInputRef.current) titleInputRef.current.value = "";
     if (commentInputRef.current) commentInputRef.current.value = "";
+
+    // Reset the rating input
+    const ratingNoneElement = document.getElementById(
+      "rating-none"
+    ) as HTMLInputElement;
+    if (ratingNoneElement) {
+      ratingNoneElement.checked = true;
+    }
   };
 
   return (
@@ -68,7 +69,7 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
         paddingInline="4"
       />
 
-      <Input
+      <Textarea
         id="comment-input"
         ref={commentInputRef}
         variant="flushed"

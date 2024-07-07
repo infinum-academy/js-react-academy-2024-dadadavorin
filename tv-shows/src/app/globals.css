@@ -47,3 +47,32 @@
 .rating-input:hover ~ .rating-label .rating-icon {
   --current-color: var(--white-100);
 }
+
+.review-rating {
+  .rating-icon {
+    --current-color: var(--white-100);
+
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  &.rating-5 .rating-icon {
+    --current-color: var(--primary-100);
+  }
+
+  &.rating-4 .rating-icon:nth-child(-n + 4) {
+    --current-color: var(--primary-100);
+  }
+
+  &.rating-3 .rating-icon:nth-child(-n + 3) {
+    --current-color: var(--primary-100);
+  }
+
+  &.rating-2 .rating-icon:nth-child(-n + 2) {
+    --current-color: var(--primary-100);
+  }
+
+  &.rating-1 .rating-icon:nth-child(-n + 1) {
+    --current-color: var(--primary-100);
+  }
+}

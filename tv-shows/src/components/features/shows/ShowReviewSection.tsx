@@ -1,6 +1,6 @@
 "use client";
-import { Text, Box, Show } from "@chakra-ui/react";
-import { Fragment, useState, useEffect } from "react";
+import { Box } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 import { IReviewList, IReview } from "@/typings/Review.type";
 import { ReviewList } from "../review/ReviewList";
 import { ShowReviewForm } from "./ShowReviewForm";
