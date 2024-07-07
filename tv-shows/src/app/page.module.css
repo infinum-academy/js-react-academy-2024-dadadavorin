@@ -10,7 +10,3 @@
   background-color: var(--gray-300);
   color: var(--text-color);
 }
-
-.show-rating {
-  color: var(--primary-color);
-}

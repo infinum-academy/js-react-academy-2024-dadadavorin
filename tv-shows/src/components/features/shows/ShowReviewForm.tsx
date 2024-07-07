@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { IReview } from "@/typings/Review.type";
+import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
 
 interface IReviewFormProps {
   onAdd: (review: IReview) => void;
@@ -76,13 +77,7 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
         paddingInline="4"
       />
 
-      <NumberInput min={1} max={5} id="rating-input" backgroundColor="gray.100">
-        <NumberInputField ref={ratingInputRef} />
-        <NumberInputStepper>
-          <NumberIncrementStepper color="white.100" />
-          <NumberDecrementStepper color="white.100" />
-        </NumberInputStepper>
-      </NumberInput>
+      <StarsRatingInput />
 
       <Button
         onClick={onClickHandler}
