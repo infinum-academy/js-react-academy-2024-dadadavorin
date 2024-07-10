@@ -1,6 +1,6 @@
 "use client";
 import styles from "./show-details.module.css";
-import { IShow, IShowRating } from "@/typings/Show.type";
+import { IShow } from "@/typings/Show.type";
 import { Card, CardBody, Image, Heading, Text, Box } from "@chakra-ui/react";
 
 const showDetails: IShow = {
@@ -10,7 +10,7 @@ const showDetails: IShow = {
   imageUrl: "/images/interstellar.webp",
 };
 
-export const ShowDetailsContainer = ({ averageRating }: IShowRating) => {
+export const ShowDetailsContainer = ({ averageRating }: IShow) => {
   return (
     <>
       <Card backgroundColor="gray.200">

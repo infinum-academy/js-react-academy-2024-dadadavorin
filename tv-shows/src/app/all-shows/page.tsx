@@ -9,7 +9,7 @@ export default function AllShowsPage() {
       <Heading as="h1" size="xl" marginBottom="10" color="white.100">
         All shows
       </Heading>
-      <ShowsList />
+      <ShowsList apiRoute="/api/shows/" />
     </Box>
   );
 }

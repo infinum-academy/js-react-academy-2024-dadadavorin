@@ -1,7 +1,29 @@
 import { Grid } from "@chakra-ui/react";
 import { ShowCard } from "./ShowCard";
+import { getShowList } from "@/fetchers/shows";
+import useSWR from "swr";
 
-export const ShowsList = () => {
+interface ShowsListProps {
+  apiRoute: string;
+}
+
+export const ShowsList = ({ apiRoute }: ShowsListProps) => {
+  const {
+    data: showListResponse,
+    error,
+    isLoading,
+  } = useSWR(apiRoute, getShowList);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Ups something went wrong...</div>;
+  }
+
+  const showLists = showListResponse?.shows;
+
   return (
     <Grid
       templateColumns={{
@@ -11,10 +33,9 @@ export const ShowsList = () => {
       }}
       gap="5"
     >
-      <ShowCard />
-      <ShowCard />
-      <ShowCard />
-      <ShowCard />
+      {showLists?.map((show) => (
+        <ShowCard key={show.id} show={show} />
+      ))}
     </Grid>
   );
 };
