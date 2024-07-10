@@ -49,14 +49,7 @@ export const ShowReviewSection = () => {
   }, []);
 
   return (
-    <Box
-      bg="gray.200"
-      p={4}
-      borderRadius="lg"
-      maxW="960px"
-      width="100%"
-      marginBlock="20"
-    >
+    <Box bg="gray.200" p={4}>
       <ShowDetailsContainer averageRating={averageRating} />
       <ShowReviewForm onAdd={addShowReview} />
       <ReviewList reviewList={reviewList} />

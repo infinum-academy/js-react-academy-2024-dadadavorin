@@ -1,4 +1,5 @@
 import { Button, Flex, Box, Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export const SidebarNavigation = () => {
   return (
@@ -8,23 +9,21 @@ export const SidebarNavigation = () => {
       bg="gray.300"
       height="100%"
       paddingBlock="10"
+      gap="2"
     >
-      <Link href="/all-shows">
-        <Button colorScheme="yellow" mb={2} width="100%">
-          All Shows
-        </Button>
-      </Link>
-      <Button colorScheme="yellow" mb={2} width="100%">
+      <Button as={NextLink} href="/all-shows" colorScheme="yellow">
+        All shows
+      </Button>
+
+      <Button as={NextLink} href="/top-rated" colorScheme="yellow">
         Top rated
       </Button>
-      <Button colorScheme="yellow" mb={2} width="100%">
-        My profile
-      </Button>
-      <Box flexGrow={1}></Box>{" "}
-      {/* Spacer that pushes the next element to the end */}
-      <Button colorScheme="yellow" mb={2} width="100%">
-        Log out
-      </Button>
+
+      <Button colorScheme="yellow">My profile</Button>
+
+      <Box flexGrow={1}></Box>
+
+      <Button colorScheme="yellow">Log out</Button>
     </Flex>
   );
 };
