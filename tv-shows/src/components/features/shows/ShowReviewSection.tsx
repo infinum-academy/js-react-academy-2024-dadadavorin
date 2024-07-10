@@ -44,6 +44,14 @@ export const ShowReviewSection = () => {
     setAverageRating(calculateAverageRating(newReviewList.reviews));
   };
 
+  const onDeleteReview = (review: IReview) => {
+    const newReviewList = {
+      reviews: reviewList.reviews.filter((r) => r !== review),
+    };
+    setReviewList(newReviewList);
+    setAverageRating(calculateAverageRating(newReviewList.reviews));
+  };
+
   useEffect(() => {
     setAverageRating(calculateAverageRating(reviewList.reviews));
   }, []);
@@ -52,7 +60,7 @@ export const ShowReviewSection = () => {
     <Box bg="gray.200" p={4}>
       <ShowDetailsContainer averageRating={averageRating} />
       <ShowReviewForm onAdd={addShowReview} />
-      <ReviewList reviewList={reviewList} />
+      <ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
     </Box>
   );
 };
