@@ -1,37 +1,46 @@
 "use client";
 import styles from "./show-details.module.css";
 import { IShow } from "@/typings/Show.type";
-import { Card, CardBody, Image, Heading, Text, Box } from "@chakra-ui/react";
+import {
+  Card,
+  CardBody,
+  Image,
+  Heading,
+  Text,
+  Box,
+  Spinner,
+} from "@chakra-ui/react";
 import { getShowItem } from "@/fetchers/shows";
 import useSWR from "swr";
+import { useParams } from "next/navigation";
 
-export const ShowsItem = () => {
+export const ShowDetailsContainer = () => {
+  const params = useParams();
   const {
     data: showItemResponse,
     error,
     isLoading,
-  } = useSWR(apiRoute, getShowList);
+  } = useSWR(params.id, getShowItem);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
     return <div>Ups something went wrong...</div>;
   }
 
-  const showLists = showListResponse?.shows;
+  console.log(showItemResponse);
 
-const showDetails: IShow = {
-  id: "1",
-  title: "Interstellar",
-  description:
-    "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-  image_url: "/images/interstellar.webp",
-  no_of_reviews: 1,
-};
+  const showDetails: IShow = {
+    id: showItemResponse?.id || "unknown",
+    title: showItemResponse?.title || "Movie title not found",
+    description: showItemResponse?.description || "Movie description not found",
+    image_url: showItemResponse?.image_url,
+    no_of_reviews: showItemResponse?.no_of_reviews || 0,
+    average_rating: showItemResponse?.average_rating || 0,
+  };
 
-export const ShowDetailsContainer = ({ average_rating }: IShow) => {
   return (
     <>
       <Card backgroundColor="gray.200">
@@ -57,11 +66,11 @@ export const ShowDetailsContainer = ({ average_rating }: IShow) => {
             textAlign="right"
             fontSize="large"
           >
-            {average_rating ? (
+            {showDetails.average_rating ? (
               <div>
                 <span>Rating: </span>
                 <span className={styles.showRatingValue}>
-                  {average_rating.toFixed(1)}
+                  {showDetails.average_rating.toFixed(1)}
                 </span>
                 <span> / 5</span>
               </div>

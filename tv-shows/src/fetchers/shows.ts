@@ -10,5 +10,5 @@ export function getShowList(apiRoute: string) {
 }
 
 export function getShowItem(id: string) {
-  return fetcher<IShowListResponse>(`/api/shows/${id}`);
+  return fetcher<IShow>(`/api/shows/${id}`);
 }

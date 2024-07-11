@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, Spinner } from "@chakra-ui/react";
 import { ShowCard } from "./ShowCard";
 import { getShowList } from "@/fetchers/shows";
 import useSWR from "swr";
@@ -15,7 +15,7 @@ export const ShowsList = ({ apiRoute }: ShowsListProps) => {
   } = useSWR(apiRoute, getShowList);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
