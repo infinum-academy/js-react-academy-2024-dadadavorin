@@ -1,8 +1,8 @@
-import { IShowList, IGetShowListParams } from "@/typings/Show.type";
+import { IShow, IGetShowListParams } from "@/typings/Show.type";
 import { fetcher } from "./fetcher";
 
 interface IShowListResponse {
-  shows: Array<IShowList>;
+  shows: Array<IShow>;
 }
 
 export function getShowList(apiRoute: string) {
