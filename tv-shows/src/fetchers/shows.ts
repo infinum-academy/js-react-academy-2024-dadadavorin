@@ -5,8 +5,12 @@ interface IShowListResponse {
   shows: Array<IShow>;
 }
 
-export function getShowList(apiRoute: string) {
-  return fetcher<IShowListResponse>(apiRoute);
+export function getShowList() {
+  return fetcher<IShowListResponse>("/api/shows/");
+}
+
+export function getShowListTopRated() {
+  return fetcher<IShowListResponse>("/api/shows/top-rated/");
 }
 
 export function getShowItem(id: string) {

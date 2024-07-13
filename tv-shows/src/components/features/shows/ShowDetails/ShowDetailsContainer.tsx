@@ -30,8 +30,6 @@ export const ShowDetailsContainer = () => {
     return <div>Ups something went wrong...</div>;
   }
 
-  console.log(showItemResponse);
-
   const showDetails: IShow = {
     id: showItemResponse?.id || "unknown",
     title: showItemResponse?.title || "Movie title not found",

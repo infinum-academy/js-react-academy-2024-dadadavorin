@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Heading } from "@chakra-ui/react";
-import { ShowsList } from "@/components/features/shows/ShowsList/ShowsList";
+import { ShowsListAll } from "@/components/features/shows/ShowsList/ShowsListAll";
 
 export default function AllShowsPage() {
   return (
@@ -9,7 +9,7 @@ export default function AllShowsPage() {
       <Heading as="h1" size="xl" marginBottom="10" color="white.100">
         All shows
       </Heading>
-      <ShowsList apiRoute="/api/shows/" />
+      <ShowsListAll />
     </Box>
   );
 }

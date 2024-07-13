@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { IReviewList, IReview } from "@/typings/Review.type";
 import { ReviewList } from "../../review/ReviewList";
 import { ShowReviewForm } from "../ShowReviewForm/ShowReviewForm";
-import { ShowDetailsContainer } from "../ShowDetails/ShowDetails";
+import { ShowDetailsContainer } from "../ShowDetails/ShowDetailsContainer";
 
 const mockReviewList: IReviewList = {
   reviews: [
