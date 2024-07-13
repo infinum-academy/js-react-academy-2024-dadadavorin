@@ -11,9 +11,9 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import useSWRMutation from "swr/mutation";
 import { mutator } from "@/fetchers/mutators";
-import { useState } from "react";
 import { swrKeys } from "@/fetchers/swrKeys";
 import NextLink from "next/link";
 
@@ -37,7 +37,6 @@ export const RegisterForm = () => {
     },
   });
   const onRegister = (data: IRegisterFormInputs) => {
-    console.log(data);
     trigger(data);
   };
 
