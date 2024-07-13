@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Heading } from "@chakra-ui/react";
-import { ShowsList } from "@/components/features/shows/ShowsList";
+import { ShowsList } from "@/components/features/shows/ShowsList/ShowsList";
 
 export default function AllShowsPage() {
   return (

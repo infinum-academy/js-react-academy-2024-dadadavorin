@@ -1,5 +1,5 @@
 import { Grid, Spinner } from "@chakra-ui/react";
-import { ShowCard } from "./ShowCard";
+import { ShowCard } from "../ShowCard/ShowCard";
 import { getShowList } from "@/fetchers/shows";
 import useSWR from "swr";
 

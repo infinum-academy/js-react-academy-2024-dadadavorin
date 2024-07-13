@@ -2,9 +2,9 @@
 import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { IReviewList, IReview } from "@/typings/Review.type";
-import { ReviewList } from "../review/ReviewList";
-import { ShowReviewForm } from "./ShowReviewForm";
-import { ShowDetailsContainer } from "./ShowDetails";
+import { ReviewList } from "../../review/ReviewList";
+import { ShowReviewForm } from "../ShowReviewForm/ShowReviewForm";
+import { ShowDetailsContainer } from "../ShowDetails/ShowDetails";
 
 const mockReviewList: IReviewList = {
   reviews: [
