@@ -6,6 +6,10 @@ import { ReviewList } from "../../review/ReviewList";
 import { ShowReviewForm } from "../ShowReviewForm/ShowReviewForm";
 import { ShowDetailsContainer } from "../ShowDetails/ShowDetailsContainer";
 
+export interface IShowReviewSectionProps {
+  averageRating: number;
+}
+
 const mockReviewList: IReviewList = {
   reviews: [
     {

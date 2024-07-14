@@ -13,8 +13,11 @@ import {
 import { getShowItem } from "@/fetchers/shows";
 import useSWR from "swr";
 import { useParams } from "next/navigation";
+import { IShowReviewSectionProps } from "../ShowReviewSection/ShowReviewSection";
 
-export const ShowDetailsContainer = () => {
+export const ShowDetailsContainer = ({
+  averageRating,
+}: IShowReviewSectionProps) => {
   const params = useParams();
   const {
     data: showItemResponse,
@@ -36,7 +39,9 @@ export const ShowDetailsContainer = () => {
     description: showItemResponse?.description || "Movie description not found",
     image_url: showItemResponse?.image_url,
     no_of_reviews: showItemResponse?.no_of_reviews || 0,
-    average_rating: showItemResponse?.average_rating || 0,
+    average_rating: showItemResponse?.average_rating
+      ? (showItemResponse?.average_rating + averageRating) / 2
+      : 0,
   };
 
   return (
