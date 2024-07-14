@@ -1,7 +1,11 @@
 import { StarIcon } from "./StarIcon";
 import { IStar } from "@/typings/Star.type";
 
-export const StarInput = ({ id }: IStar) => {
+interface StarInputProps extends IStar {
+  register: any;
+}
+
+export const StarInput = ({ id, register }: StarInputProps) => {
   return (
     <>
       <label
@@ -13,7 +17,7 @@ export const StarInput = ({ id }: IStar) => {
       </label>
       <input
         className="rating-input"
-        name="rating"
+        {...register("rating")}
         id={`rating-${id}`}
         value={id}
         type="radio"

@@ -1,89 +1,103 @@
-import { Button, Flex, Input, Heading, Textarea } from "@chakra-ui/react";
-import { useRef } from "react";
+import {
+  Button,
+  Flex,
+  Input,
+  Heading,
+  Textarea,
+  chakra,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+} from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 import { IReview } from "@/typings/Review.type";
 import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
 
+interface IReviewFormInputs {
+  title: string;
+  comment: string;
+  rating: number;
+}
+
 interface IReviewFormProps {
-  onAdd: (review: IReview) => void;
+  onAdd: (review: IReview) => Promise<void>;
 }
 
 export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
-  const titleInputRef = useRef<HTMLInputElement>(null);
-  const commentInputRef = useRef<HTMLTextAreaElement>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<IReviewFormInputs>();
 
-  const onClickHandler = () => {
-    const titleValue = titleInputRef.current?.value || "";
-    const commentValue = commentInputRef.current?.value || "";
-
-    const ratingElement = document.querySelector(
-      'input[name="rating"]:checked'
-    ) as HTMLInputElement | null;
-    const ratingValue = ratingElement ? parseInt(ratingElement.value, 10) : 0;
-
-    if (!titleValue || !commentValue || !ratingValue) {
-      alert("Please enter your review title, comment and rating.");
-      return;
-    }
-
-    const newReview: IReview = {
-      title: titleValue,
-      comment: commentValue,
-      rating: ratingValue,
-    };
-
-    onAdd(newReview);
-
-    // Clear the form inputs
-    if (titleInputRef.current) titleInputRef.current.value = "";
-    if (commentInputRef.current) commentInputRef.current.value = "";
-
-    // Reset the rating input
-    const ratingNoneElement = document.getElementById(
-      "rating-none"
-    ) as HTMLInputElement;
-    if (ratingNoneElement) {
-      ratingNoneElement.checked = true;
+  const onSubmit = async (data: IReviewFormInputs) => {
+    try {
+      await onAdd({
+        title: data.title,
+        comment: data.comment,
+        rating: data.rating,
+      });
+      reset();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to submit review. Please try again.");
     }
   };
 
   return (
     <Flex
+      as="form"
       gap="8"
-      direction="column"
+      flexDirection="column"
       marginBlockEnd="20"
       backgroundColor="gray.300"
       color="white.100"
       borderRadius="lg"
       padding="8"
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Heading as="h3" size="lg">
         Add your review
       </Heading>
 
-      <Input
-        id="title-input"
-        ref={titleInputRef}
-        placeholder="Enter review title"
-        variant="flushed"
-        backgroundColor="gray.100"
-        paddingInline="4"
-      />
+      <FormControl isInvalid={!!errors.title}>
+        <FormLabel htmlFor="title-input">Title</FormLabel>
+        <Input
+          id="title-input"
+          placeholder="Enter review title"
+          variant="flushed"
+          backgroundColor="gray.100"
+          paddingInline="4"
+          {...register("title", { required: "Title is required" })}
+        />
+        <FormErrorMessage>
+          {errors.title && errors.title.message}
+        </FormErrorMessage>
+      </FormControl>
 
-      <Textarea
-        id="comment-input"
-        ref={commentInputRef}
-        variant="flushed"
-        placeholder="Enter review comment"
-        backgroundColor="gray.100"
-        paddingInline="4"
-      />
+      <FormControl isInvalid={!!errors.comment}>
+        <FormLabel htmlFor="comment-input">Comment</FormLabel>
+        <Textarea
+          id="comment-input"
+          variant="flushed"
+          placeholder="Enter review comment"
+          backgroundColor="gray.100"
+          paddingInline="4"
+          {...register("comment", { required: "Comment is required" })}
+        />
+        <FormErrorMessage>
+          {errors.comment && errors.comment.message}
+        </FormErrorMessage>
+      </FormControl>
 
-      <StarsRatingInput />
+      <StarsRatingInput register={register} errors={errors} required />
 
       <Button
-        onClick={onClickHandler}
+        type="submit"
         backgroundColor="primary.100"
         _hover={{ bg: "primary.200" }}
+        isLoading={isSubmitting}
       >
         Add review
       </Button>
