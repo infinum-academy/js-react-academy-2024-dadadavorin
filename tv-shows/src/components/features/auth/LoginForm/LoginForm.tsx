@@ -28,7 +28,6 @@ export const LoginForm = () => {
   const { trigger } = useSWRMutation(swrKeys.sign_in, mutator, {
     onSuccess: (data) => {
       mutate(data, { revalidate: false });
-      console.log(data);
     },
   });
 
