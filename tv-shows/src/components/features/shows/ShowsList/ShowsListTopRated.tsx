@@ -9,7 +9,7 @@ export const ShowsListTopRated = () => {
     data: showListResponse,
     error,
     isLoading,
-  } = useSWR("/top-rated/", getShowListTopRated);
+  } = useSWR("/shows/top-rated/", getShowListTopRated);
 
   if (isLoading) {
     return <Spinner />;

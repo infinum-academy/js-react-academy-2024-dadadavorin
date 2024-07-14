@@ -34,13 +34,14 @@ export const ShowDetailsContainer = ({
   }
 
   const showDetails: IShow = {
-    id: showItemResponse?.id || "unknown",
-    title: showItemResponse?.title || "Movie title not found",
-    description: showItemResponse?.description || "Movie description not found",
-    image_url: showItemResponse?.image_url,
-    no_of_reviews: showItemResponse?.no_of_reviews || 0,
-    average_rating: showItemResponse?.average_rating
-      ? (showItemResponse?.average_rating + averageRating) / 2
+    id: showItemResponse?.show?.id || "unknown",
+    title: showItemResponse?.show?.title || "Movie title not found",
+    description:
+      showItemResponse?.show?.description || "Movie description not found",
+    image_url: showItemResponse?.show?.image_url,
+    no_of_reviews: showItemResponse?.show?.no_of_reviews || 0,
+    average_rating: showItemResponse?.show?.average_rating
+      ? (showItemResponse?.show?.average_rating + averageRating) / 2
       : 0,
   };
 
