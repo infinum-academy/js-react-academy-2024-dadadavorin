@@ -1,6 +1,6 @@
 "use client";
 import styles from "./show-details.module.css";
-import { IShow, IShowListResponse, IShowResponse } from "@/typings/Show.type";
+import { IShow, IShowResponse } from "@/typings/Show.type";
 import {
   Card,
   CardBody,
