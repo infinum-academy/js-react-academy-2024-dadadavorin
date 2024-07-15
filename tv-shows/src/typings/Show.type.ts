@@ -7,6 +7,10 @@ export interface IShow {
   no_of_reviews: number;
 }
 
+export interface IShowResponse {
+  show: IShow;
+}
+
 export interface IShowList {
   shows: Array<IShow>;
 }

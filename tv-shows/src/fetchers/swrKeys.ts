@@ -5,4 +5,5 @@ export const swrKeys = {
   me: `${apiUrl}/users/me`,
   shows: `${apiUrl}/shows`,
   top_rated: `${apiUrl}/shows/top_rated`,
+  showItem: (id: string) => `${apiUrl}/shows/${id}`,
 };

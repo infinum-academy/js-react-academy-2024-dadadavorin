@@ -1,6 +1,6 @@
 "use client";
 import styles from "./show-details.module.css";
-import { IShow } from "@/typings/Show.type";
+import { IShow, IShowListResponse, IShowResponse } from "@/typings/Show.type";
 import {
   Card,
   CardBody,
@@ -14,6 +14,8 @@ import { getShowItem } from "@/fetchers/shows";
 import useSWR from "swr";
 import { useParams } from "next/navigation";
 import { IShowReviewSectionProps } from "../ShowReviewSection/ShowReviewSection";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { fetcher } from "@/fetchers/fetcher";
 
 export const ShowDetailsContainer = ({
   averageRating,
@@ -23,7 +25,7 @@ export const ShowDetailsContainer = ({
     data: showItemResponse,
     error,
     isLoading,
-  } = useSWR(params.id, getShowItem);
+  } = useSWR<IShowResponse>(swrKeys.showItem(params.id as string), fetcher);
 
   if (isLoading) {
     return <Spinner />;
