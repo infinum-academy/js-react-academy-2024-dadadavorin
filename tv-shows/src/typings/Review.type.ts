@@ -1,5 +1,7 @@
 export interface IReview {
-  title: string;
+  user: {
+    email: string;
+  };
   comment: string;
   rating: number;
 }

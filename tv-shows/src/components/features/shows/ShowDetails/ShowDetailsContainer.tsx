@@ -12,13 +12,10 @@ import {
 } from "@chakra-ui/react";
 import useSWR from "swr";
 import { useParams } from "next/navigation";
-import { IShowReviewSectionProps } from "../ShowReviewSection/ShowReviewSection";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
 
-export const ShowDetailsContainer = ({
-  averageRating,
-}: IShowReviewSectionProps) => {
+export const ShowDetailsContainer = () => {
   const params = useParams();
   const {
     data: showItemResponse,
@@ -41,9 +38,7 @@ export const ShowDetailsContainer = ({
       showItemResponse?.show?.description || "Movie description not found",
     image_url: showItemResponse?.show?.image_url,
     no_of_reviews: showItemResponse?.show?.no_of_reviews || 0,
-    average_rating: showItemResponse?.show?.average_rating
-      ? (showItemResponse?.show?.average_rating + averageRating) / 2
-      : 0,
+    average_rating: showItemResponse?.show?.average_rating || 0,
   };
 
   return (

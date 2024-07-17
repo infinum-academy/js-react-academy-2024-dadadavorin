@@ -17,7 +17,7 @@ export const ReviewItem = ({ review, onDelete }: IReviewItemProps) => {
       position="relative"
     >
       <CardBody>
-        <Text fontWeight="bold">{review.title}</Text>
+        <Text fontWeight="bold">{review.user?.email}</Text>
         <Text marginBlock="5">{review.comment}</Text>
         <StarReviewIcons reviewRating={review.rating} />
         <CloseIcon

@@ -4,7 +4,6 @@ import {
   Input,
   Heading,
   Textarea,
-  chakra,
   FormControl,
   FormLabel,
   FormErrorMessage,
@@ -14,7 +13,7 @@ import { IReview } from "@/typings/Review.type";
 import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
 
 interface IReviewFormInputs {
-  title: string;
+  email: string;
   comment: string;
   rating: number;
 }
@@ -34,7 +33,7 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
   const onSubmit = async (data: IReviewFormInputs) => {
     try {
       await onAdd({
-        title: data.title,
+        email: data.email,
         comment: data.comment,
         rating: data.rating,
       });
@@ -61,18 +60,18 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
         Add your review
       </Heading>
 
-      <FormControl isInvalid={!!errors.title}>
-        <FormLabel htmlFor="title-input">Title</FormLabel>
+      <FormControl isInvalid={!!errors.email}>
+        <FormLabel htmlFor="email-input">Email</FormLabel>
         <Input
-          id="title-input"
-          placeholder="Enter review title"
+          id="email-input"
+          placeholder="Enter your email"
           variant="flushed"
           backgroundColor="gray.100"
           paddingInline="4"
-          {...register("title", { required: "Title is required" })}
+          {...register("email", { required: "email is required" })}
         />
         <FormErrorMessage>
-          {errors.title && errors.title.message}
+          {errors.email && errors.email.message}
         </FormErrorMessage>
       </FormControl>
 
