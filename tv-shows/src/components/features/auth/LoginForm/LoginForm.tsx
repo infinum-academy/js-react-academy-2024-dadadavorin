@@ -15,8 +15,7 @@ import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
-import useSWR from "swr";
-import { fetcher } from "@/fetchers/fetcher";
+import { useSWRConfig } from "swr";
 import NextLink from "next/link";
 
 interface ILoginFormInputs {
@@ -30,10 +29,10 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginFormInputs>();
-  const { mutate } = useSWR(swrKeys.me, fetcher);
+  const { mutate } = useSWRConfig();
   const { trigger } = useSWRMutation(swrKeys.signIn, mutator, {
     onSuccess: (data) => {
-      mutate(data, { revalidate: false });
+      mutate(swrKeys.me, data, false);
     },
   });
 
