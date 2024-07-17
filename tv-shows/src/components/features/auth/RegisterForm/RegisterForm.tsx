@@ -4,6 +4,7 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -68,20 +69,18 @@ export const RegisterForm = () => {
             gap={3}
             onSubmit={handleSubmit(onRegister)}
           >
-            <FormControl isRequired={true} isInvalid={!!errors.email}>
+            <FormControl isInvalid={!!errors.email}>
               <FormLabel>Email</FormLabel>
               <Input
-                {...register("email", { required: "Email is required" })}
+                {...register("email", { required: true })}
                 name="email"
                 type="email"
                 bg="white.100"
                 color="black"
               />
-              {errors.email && (
-                <Text color="red.500">{errors.email.message}</Text>
-              )}
+              <FormErrorMessage>Email is required</FormErrorMessage>
             </FormControl>
-            <FormControl isRequired={true} isInvalid={!!errors.password}>
+            <FormControl isInvalid={!!errors.password}>
               <FormLabel>Password</FormLabel>
               <Input
                 {...register("password", {
@@ -96,14 +95,9 @@ export const RegisterForm = () => {
                 bg="white.100"
                 color="black"
               />
-              {errors.password && (
-                <Text color="red.500">{errors.password.message}</Text>
-              )}
+              <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
             </FormControl>
-            <FormControl
-              isRequired={true}
-              isInvalid={!!errors.password_confirmation}
-            >
+            <FormControl isInvalid={!!errors.password_confirmation}>
               <FormLabel>Confirm Password</FormLabel>
               <Input
                 {...register("password_confirmation", {
@@ -115,11 +109,9 @@ export const RegisterForm = () => {
                 bg="white.100"
                 color="black"
               />
-              {errors.password_confirmation && (
-                <Text color="red.500">
-                  {errors.password_confirmation.message}
-                </Text>
-              )}
+              <FormErrorMessage>
+                {errors?.password_confirmation?.message}
+              </FormErrorMessage>
             </FormControl>
             <Button type="submit" colorScheme="yellow" marginTop="5" size="lg">
               Register

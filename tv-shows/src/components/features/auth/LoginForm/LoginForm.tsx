@@ -4,6 +4,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  FormErrorMessage,
   Heading,
   Input,
   chakra,
@@ -52,29 +53,27 @@ export const LoginForm = () => {
         gap={3}
         onSubmit={handleSubmit(onLogin)}
       >
-        <FormControl isRequired={true} isInvalid={!!errors.email}>
+        <FormControl isInvalid={!!errors.email}>
           <FormLabel>Email</FormLabel>
           <Input
-            {...register("email", { required: "Email is required" })}
+            {...register("email", { required: true })}
             type="email"
             bg="white.100"
             color="black"
           />
-          {errors.email && <Text color="red.500">{errors.email.message}</Text>}
+          <FormErrorMessage>Email is required</FormErrorMessage>
         </FormControl>
-        <FormControl isRequired={true} isInvalid={!!errors.password}>
+        <FormControl isInvalid={!!errors.password}>
           <FormLabel>Password</FormLabel>
           <Input
             {...register("password", {
-              required: "Password is required",
+              required: true,
             })}
             type="password"
             bg="white.100"
             color="black"
           />
-          {errors.password && (
-            <Text color="red.500">{errors.password.message}</Text>
-          )}
+          <FormErrorMessage>Password is required</FormErrorMessage>
         </FormControl>
         <Button type="submit" colorScheme="yellow" size="lg" marginTop="5">
           Login
