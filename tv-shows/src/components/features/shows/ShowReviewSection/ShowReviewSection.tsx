@@ -29,33 +29,13 @@ export const ShowReviewSection = () => {
 
   const reviewList: IReviewList = {
     reviews: reviewListResponse?.reviews ?? [],
-  }; // load review list from server
-
-  const addShowReview = async (review: IReview) => {
-    const newReviewList = {
-      reviews: [...reviewList.reviews, review],
-    };
-    //setReviewList(newReviewList);
-
-    return Promise.resolve();
   };
-
-  const onDeleteReview = (review: IReview) => {
-    const newReviewList = {
-      reviews: reviewList.reviews.filter((r) => r !== review),
-    };
-    //setReviewList(newReviewList);
-  };
-
-  // useEffect(() => {
-  //   setAverageRating(calculateAverageRating(reviewList.reviews));
-  // }, []);
 
   return (
     <Box bg="gray.200" p={4}>
       <ShowDetailsContainer />
-      <ShowReviewForm onAdd={addShowReview} />
-      <ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
+      <ShowReviewForm />
+      <ReviewList reviewList={reviewList} />
     </Box>
   );
 };
