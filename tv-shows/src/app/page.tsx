@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { ShowReviewSection } from "@/components/features/shows/ShowReviewSection";
+import { ShowReviewSection } from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
 
 export default function Home() {
   return (

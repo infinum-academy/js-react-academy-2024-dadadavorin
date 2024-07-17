@@ -2,9 +2,9 @@
 import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { IReviewList, IReview } from "@/typings/Review.type";
-import { ReviewList } from "../review/ReviewList";
-import { ShowReviewForm } from "./ShowReviewForm";
-import { ShowDetailsContainer } from "./ShowDetails";
+import { ReviewList } from "../../review/ReviewList";
+import { ShowReviewForm } from "../ShowReviewForm/ShowReviewForm";
+import { ShowDetailsContainer } from "../ShowDetails/ShowDetailsContainer";
 
 const mockReviewList: IReviewList = {
   reviews: [
@@ -44,22 +44,23 @@ export const ShowReviewSection = () => {
     setAverageRating(calculateAverageRating(newReviewList.reviews));
   };
 
+  const onDeleteReview = (review: IReview) => {
+    const newReviewList = {
+      reviews: reviewList.reviews.filter((r) => r !== review),
+    };
+    setReviewList(newReviewList);
+    setAverageRating(calculateAverageRating(newReviewList.reviews));
+  };
+
   useEffect(() => {
     setAverageRating(calculateAverageRating(reviewList.reviews));
   }, []);
 
   return (
-    <Box
-      bg="gray.200"
-      p={4}
-      borderRadius="lg"
-      maxW="960px"
-      width="100%"
-      marginBlock="20"
-    >
+    <Box bg="gray.200" p={4}>
       <ShowDetailsContainer averageRating={averageRating} />
       <ShowReviewForm onAdd={addShowReview} />
-      <ReviewList reviewList={reviewList} />
+      <ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
     </Box>
   );
 };
