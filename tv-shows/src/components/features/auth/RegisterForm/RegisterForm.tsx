@@ -14,7 +14,7 @@ import {
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
-import { mutator } from "@/fetchers/mutators";
+import { authUser } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import NextLink from "next/link";
 
@@ -32,7 +32,7 @@ export const RegisterForm = () => {
     watch,
     formState: { errors },
   } = useForm<IRegisterFormInputs>();
-  const { trigger } = useSWRMutation(swrKeys.users, mutator, {
+  const { trigger } = useSWRMutation(swrKeys.users, authUser, {
     onSuccess: () => {
       setRegistered(true);
     },

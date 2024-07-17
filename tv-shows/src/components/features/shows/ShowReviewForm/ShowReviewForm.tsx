@@ -11,6 +11,10 @@ import {
 import { useForm } from "react-hook-form";
 import { IReview } from "@/typings/Review.type";
 import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
+import useSWRMutation from "swr/mutation";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { createReview } from "@/fetchers/mutators";
+import { useParams } from "next/navigation";
 
 interface IReviewFormInputs {
   email: string;
@@ -18,30 +22,33 @@ interface IReviewFormInputs {
   rating: number;
 }
 
+interface IReviewDataParams {
+  comment: string;
+  rating: number;
+  show_id: number;
+}
+
 interface IReviewFormProps {
   onAdd: (review: IReview) => Promise<void>;
 }
 
 export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
+  const params = useParams();
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<IReviewFormInputs>();
 
-  const onSubmit = async (data: IReviewFormInputs) => {
-    try {
-      await onAdd({
-        email: data.email,
-        comment: data.comment,
-        rating: data.rating,
-      });
-      reset();
-    } catch (error) {
-      console.error(error);
-      alert("Failed to submit review. Please try again.");
-    }
+  const { trigger, isMutating } = useSWRMutation(swrKeys.reviews, createReview);
+
+  const onSubmit = async (data: IReviewDataParams) => {
+    data.show_id = Number(params.id);
+    console.log("adding review");
+    console.log(data);
+    await trigger(data);
   };
 
   return (
@@ -96,7 +103,7 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
         type="submit"
         backgroundColor="primary.100"
         _hover={{ bg: "primary.200" }}
-        isLoading={isSubmitting}
+        isLoading={isMutating}
       >
         Add review
       </Button>
