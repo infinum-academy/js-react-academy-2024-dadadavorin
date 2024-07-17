@@ -1,5 +1,5 @@
 import { Grid } from "@chakra-ui/react";
-import { ShowCard } from "../ShowCard/ShowCard";
+import { ShowCard } from "../../ShowCard/ShowCard";
 import { IShowList, IShow } from "@/typings/Show.type";
 
 export interface IShowsListProps {
