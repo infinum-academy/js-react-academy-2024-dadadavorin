@@ -13,7 +13,7 @@ export async function mutator(url: string, { arg }: { arg: any }) {
     throw new Error(`Error mutating data on ${url}`);
   }
 
-  if (response.ok && url === swrKeys.sign_in) {
+  if (response.ok && url === swrKeys.signIn) {
     // Set access token in local storage
     const accessToken = response.headers.get("access-token");
     if (accessToken) {

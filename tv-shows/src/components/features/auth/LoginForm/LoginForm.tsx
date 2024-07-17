@@ -31,7 +31,7 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm<ILoginFormInputs>();
   const { mutate } = useSWR(swrKeys.me, fetcher);
-  const { trigger } = useSWRMutation(swrKeys.sign_in, mutator, {
+  const { trigger } = useSWRMutation(swrKeys.signIn, mutator, {
     onSuccess: (data) => {
       mutate(data, { revalidate: false });
     },

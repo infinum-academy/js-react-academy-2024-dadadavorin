@@ -1,15 +1,16 @@
 import { Spinner } from "@chakra-ui/react";
 import { ShowsList } from "./ShowsList";
-import { getShowList } from "@/fetchers/shows";
 import { IShowList } from "@/typings/Show.type";
 import useSWR from "swr";
+import { fetcher } from "@/fetchers/fetcher";
+import { swrKeys } from "@/fetchers/swrKeys";
 
 export const ShowsListAll = () => {
   const {
     data: showListResponse,
     error,
     isLoading,
-  } = useSWR("/all-shows/", getShowList);
+  } = useSWR(swrKeys.shows, fetcher<IShowList>);
 
   if (isLoading) {
     return <Spinner />;

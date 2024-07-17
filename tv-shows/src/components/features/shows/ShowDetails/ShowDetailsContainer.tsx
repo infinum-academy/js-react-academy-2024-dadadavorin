@@ -10,7 +10,6 @@ import {
   Box,
   Spinner,
 } from "@chakra-ui/react";
-import { getShowItem } from "@/fetchers/shows";
 import useSWR from "swr";
 import { useParams } from "next/navigation";
 import { IShowReviewSectionProps } from "../ShowReviewSection/ShowReviewSection";
