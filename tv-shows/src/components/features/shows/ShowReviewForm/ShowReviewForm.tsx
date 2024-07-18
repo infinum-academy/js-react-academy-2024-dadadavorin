@@ -15,6 +15,7 @@ import { swrKeys } from "@/fetchers/swrKeys";
 import { createReview } from "@/fetchers/mutators";
 import { useParams } from "next/navigation";
 import { useSWRConfig } from "swr";
+import { useState } from "react";
 
 export interface IReviewDataParams {
   comment: string;
@@ -24,21 +25,26 @@ export interface IReviewDataParams {
 
 export const ShowReviewForm = () => {
   const params = useParams();
+  const { mutate } = useSWRConfig();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IReviewDataParams>();
-  const { mutate } = useSWRConfig();
 
   const { trigger } = useSWRMutation(swrKeys.reviews, createReview, {
-    onSuccess: (data) => {
-      mutate(swrKeys.reviewList(params.id as string), data, false);
+    onSuccess: async (data) => {
+      await mutate(swrKeys.reviewList(params.id as string), data, false);
+      reset();
+      setLoading(false);
     },
   });
 
   const onSubmit = (data: IReviewDataParams) => {
+    setLoading(true);
     data.show_id = Number(params.id);
     trigger(data);
   };
@@ -80,6 +86,7 @@ export const ShowReviewForm = () => {
         type="submit"
         backgroundColor="primary.100"
         _hover={{ bg: "primary.200" }}
+        isLoading={loading}
       >
         Add review
       </Button>
