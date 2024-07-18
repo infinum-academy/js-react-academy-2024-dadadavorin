@@ -32,6 +32,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
         <Text marginBlock="5">{review.comment}</Text>
         <StarReviewIcons reviewRating={review.rating} />
         <CloseIcon
+          as="button"
           onClick={() => onDelete(review.id)}
           color="white.100"
           position="absolute"
