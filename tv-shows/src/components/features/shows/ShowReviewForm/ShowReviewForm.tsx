@@ -25,7 +25,7 @@ export interface IReviewDataParams {
 
 export const ShowReviewForm = () => {
   const params = useParams();
-  const { mutate } = useSWRConfig();
+  const { mutate, cache } = useSWRConfig();
   const [loading, setLoading] = useState(false);
 
   const {
@@ -37,7 +37,15 @@ export const ShowReviewForm = () => {
 
   const { trigger } = useSWRMutation(swrKeys.reviews, createReview, {
     onSuccess: async (data) => {
-      await mutate(swrKeys.reviewList(params.id as string), data, false);
+      const reviewsFromCache = cache.get(
+        swrKeys.reviewList(params.id as string)
+      );
+      console.log(reviewsFromCache);
+      await mutate(
+        swrKeys.reviewList(params.id as string),
+        { reviews: [data.review, ...reviewsFromCache?.data.reviews] },
+        false
+      );
       reset();
       setLoading(false);
     },
