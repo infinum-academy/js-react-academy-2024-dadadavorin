@@ -1,7 +1,21 @@
+"use client";
 import { Button, Flex, Box } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { mutate } from "swr";
+import { swrKeys } from "../../../fetchers/swrKeys";
+import { useRouter } from "next/navigation";
 
 export const SidebarNavigation = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("client");
+    localStorage.removeItem("uid");
+    localStorage.removeItem("expiry");
+    mutate(swrKeys.me, null, { revalidate: true });
+  };
+
   return (
     <Box bg="gray.300" position="relative">
       <Flex
@@ -24,7 +38,9 @@ export const SidebarNavigation = () => {
           My profile
         </Button>
 
-        <Button colorScheme="yellow">Log out</Button>
+        <Button colorScheme="yellow" onClick={handleLogout}>
+          Log out
+        </Button>
       </Flex>
     </Box>
   );

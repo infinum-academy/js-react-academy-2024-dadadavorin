@@ -1,6 +1,6 @@
 "use client";
 import styles from "./show-details.module.css";
-import { IShow } from "@/typings/Show.type";
+import { IShow, IShowResponse } from "@/typings/Show.type";
 import {
   Card,
   CardBody,
@@ -10,17 +10,21 @@ import {
   Box,
   Spinner,
 } from "@chakra-ui/react";
-import { getShowItem } from "@/fetchers/shows";
 import useSWR from "swr";
 import { useParams } from "next/navigation";
+import { IShowReviewSectionProps } from "../ShowReviewSection/ShowReviewSection";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { fetcher } from "@/fetchers/fetcher";
 
-export const ShowDetailsContainer = () => {
+export const ShowDetailsContainer = ({
+  averageRating,
+}: IShowReviewSectionProps) => {
   const params = useParams();
   const {
     data: showItemResponse,
     error,
     isLoading,
-  } = useSWR(params.id, getShowItem);
+  } = useSWR<IShowResponse>(swrKeys.showItem(params.id as string), fetcher);
 
   if (isLoading) {
     return <Spinner />;
@@ -31,12 +35,15 @@ export const ShowDetailsContainer = () => {
   }
 
   const showDetails: IShow = {
-    id: showItemResponse?.id || "unknown",
-    title: showItemResponse?.title || "Movie title not found",
-    description: showItemResponse?.description || "Movie description not found",
-    image_url: showItemResponse?.image_url,
-    no_of_reviews: showItemResponse?.no_of_reviews || 0,
-    average_rating: showItemResponse?.average_rating || 0,
+    id: showItemResponse?.show?.id || "unknown",
+    title: showItemResponse?.show?.title || "Movie title not found",
+    description:
+      showItemResponse?.show?.description || "Movie description not found",
+    image_url: showItemResponse?.show?.image_url,
+    no_of_reviews: showItemResponse?.show?.no_of_reviews || 0,
+    average_rating: showItemResponse?.show?.average_rating
+      ? (showItemResponse?.show?.average_rating + averageRating) / 2
+      : 0,
   };
 
   return (

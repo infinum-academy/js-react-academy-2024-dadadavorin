@@ -6,6 +6,10 @@ import { ReviewList } from "../../review/ReviewList";
 import { ShowReviewForm } from "../ShowReviewForm/ShowReviewForm";
 import { ShowDetailsContainer } from "../ShowDetails/ShowDetailsContainer";
 
+export interface IShowReviewSectionProps {
+  averageRating: number;
+}
+
 const mockReviewList: IReviewList = {
   reviews: [
     {
@@ -36,12 +40,14 @@ export const ShowReviewSection = () => {
     return totalRating / reviews.length;
   };
 
-  const addShowReview = (review: IReview) => {
+  const addShowReview = async (review: IReview) => {
     const newReviewList = {
       reviews: [...reviewList.reviews, review],
     };
     setReviewList(newReviewList);
     setAverageRating(calculateAverageRating(newReviewList.reviews));
+
+    return Promise.resolve();
   };
 
   const onDeleteReview = (review: IReview) => {
