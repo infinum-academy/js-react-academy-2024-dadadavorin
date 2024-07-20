@@ -9,9 +9,6 @@ export default function TopRatedPage() {
     <>
       <AuthRedirect to="/login" condition="loggedOut" />
       <Box paddingBlock="10" paddingInline="10">
-        <Heading as="h1" size="xl" marginBottom="10" color="white.100">
-          Top rated
-        </Heading>
         <ShowsListTopRated />
       </Box>
     </>

@@ -5,10 +5,10 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(cardAnatomy.keys);
 
 const baseStyle = definePartsStyle({
-  // define the part you're going to style
   container: {
     backgroundColor: "white",
     borderRadius: "default",
+    overflow: "hidden",
   },
   header: {
     paddingBottom: "2px",
@@ -32,5 +32,13 @@ const variants = {
   }),
 };
 
+const sizes = {
+  xl: definePartsStyle({
+    body: {
+      padding: "40px",
+    },
+  }),
+};
+
 // export variants in the component theme
-export const Card = defineMultiStyleConfig({ variants, baseStyle });
+export const Card = defineMultiStyleConfig({ variants, baseStyle, sizes });

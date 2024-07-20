@@ -34,6 +34,11 @@
     width: 1.6rem;
     height: 1.6rem;
   }
+
+  &.rating-icon-size-md {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 }
 
 .rating-input:checked ~ .rating-label .rating-icon {
