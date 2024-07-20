@@ -31,7 +31,6 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
 
   const onDelete = () => {
     trigger();
-    console.log("Delete review");
   };
 
   return (

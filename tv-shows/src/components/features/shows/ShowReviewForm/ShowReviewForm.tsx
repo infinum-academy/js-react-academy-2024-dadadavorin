@@ -26,12 +26,11 @@ export interface IReviewDataParams {
 export const ShowReviewForm = () => {
   const params = useParams();
   const { mutate, cache } = useSWRConfig();
-  const [loading, setLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<IReviewDataParams>();
 
@@ -46,12 +45,10 @@ export const ShowReviewForm = () => {
         false
       );
       reset();
-      setLoading(false);
     },
   });
 
   const onSubmit = (data: IReviewDataParams) => {
-    setLoading(true);
     data.show_id = Number(params.id);
     trigger(data);
   };
@@ -82,9 +79,7 @@ export const ShowReviewForm = () => {
           paddingInline="4"
           {...register("comment", { required: "Comment is required" })}
         />
-        <FormErrorMessage>
-          {errors.comment && errors.comment.message}
-        </FormErrorMessage>
+        <FormErrorMessage>{errors?.comment?.message}</FormErrorMessage>
       </FormControl>
 
       <StarsRatingInput register={register} errors={errors} required />
@@ -93,7 +88,7 @@ export const ShowReviewForm = () => {
         type="submit"
         backgroundColor="primary.100"
         _hover={{ bg: "primary.200" }}
-        isLoading={loading}
+        isLoading={isSubmitting}
       >
         Add review
       </Button>
