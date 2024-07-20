@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, Text, Image, Flex } from "@chakra-ui/react";
+import { Card, CardBody, Text, Image, Flex } from "@chakra-ui/react";
 import { StarIcon } from "@/components/shared/stars/StarIcon";
 import NextLink from "next/link";
 import { IShow } from "@/typings/Show.type";
@@ -19,9 +19,11 @@ export const ShowCard = ({ show }: IShowCardProps) => {
       <CardBody>
         <Text fontWeight="bold">{show.title}</Text>
         <Flex alignItems="center">
-          <StarIcon />
+          <StarIcon size="sm" />
           <Text>
-            {show.average_rating ? show.average_rating.toFixed(1) : "No rating"}
+            {show.average_rating
+              ? `${show.average_rating.toFixed(1)}/5`
+              : "No rating"}
           </Text>
         </Flex>
       </CardBody>

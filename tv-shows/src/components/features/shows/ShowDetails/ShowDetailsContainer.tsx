@@ -43,7 +43,7 @@ export const ShowDetailsContainer = () => {
 
   return (
     <>
-      <Card backgroundColor="gray.200">
+      <Card>
         <CardBody>
           <Image
             src={

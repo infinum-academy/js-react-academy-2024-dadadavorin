@@ -1,5 +1,5 @@
 "use client";
-import { Button, Flex, Box } from "@chakra-ui/react";
+import { Button, Flex, Box, Image } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { mutate } from "swr";
 import { swrKeys } from "../../../fetchers/swrKeys";
@@ -18,28 +18,28 @@ export const SidebarNavigation = () => {
   };
 
   return (
-    <Box bg="gray.300" position="relative">
-      <Flex
-        direction="column"
-        p={4}
-        paddingBlock="10"
-        gap="2"
-        position="sticky"
-        top="0"
-      >
-        <Button as={NextLink} href="/all-shows" colorScheme="yellow">
+    <Box position="relative" px="6" py="8">
+      <Image
+        src="images/logo.svg"
+        alt="logo"
+        width="200px"
+        maxW="100%"
+        marginBottom="20"
+      />
+      <Flex direction="column" gap="4" position="sticky" top="0">
+        <Button as={NextLink} href="/all-shows" variant="purpleDark" size="sm">
           All shows
         </Button>
 
-        <Button as={NextLink} href="/top-rated" colorScheme="yellow">
+        <Button as={NextLink} href="/top-rated" variant="purpleDark" size="sm">
           Top rated
         </Button>
 
-        <Button colorScheme="yellow" marginBottom="5">
+        <Button variant="purpleDark" size="sm" marginBottom="5">
           My profile
         </Button>
 
-        <Button colorScheme="yellow" onClick={handleLogout}>
+        <Button variant="purpleDark" size="sm" onClick={handleLogout}>
           Log out
         </Button>
       </Flex>

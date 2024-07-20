@@ -32,7 +32,7 @@ export const ShowReviewSection = () => {
   };
 
   return (
-    <Box bg="gray.200" p={4}>
+    <Box p={4}>
       <ShowDetailsContainer />
       <ShowReviewForm />
       <ReviewList reviewList={reviewList} />

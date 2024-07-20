@@ -1,6 +1,13 @@
-export const StarIcon = () => {
+interface StarIconProps {
+  size?: string;
+}
+
+export const StarIcon = ({ size }: StarIconProps) => {
+  const iconClass = size
+    ? `rating-icon rating-icon-size-${size}`
+    : "rating-icon";
   return (
-    <i className="rating-icon">
+    <i className={iconClass}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlSpace="preserve"
