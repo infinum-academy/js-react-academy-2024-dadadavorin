@@ -40,7 +40,6 @@ export const ShowReviewForm = () => {
       const reviewsFromCache = cache.get(
         swrKeys.reviewList(params.id as string)
       );
-      console.log(reviewsFromCache);
       await mutate(
         swrKeys.reviewList(params.id as string),
         { reviews: [data.review, ...reviewsFromCache?.data.reviews] },

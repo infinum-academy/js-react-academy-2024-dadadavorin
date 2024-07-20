@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useSWRConfig } from "swr";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { deleteReview } from "@/fetchers/mutators";
+import useSWRMutation from "swr/mutation";
 
 interface IReviewItemProps {
   review: IReview;
@@ -15,9 +16,22 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
   const params = useParams();
   const { mutate } = useSWRConfig();
 
-  const onDelete = (reviewId: string) => {
-    deleteReview(swrKeys.reviewItem(reviewId));
-    mutate(swrKeys.reviewList(params.id as string));
+  const { trigger } = useSWRMutation(
+    swrKeys.reviewItem(review.id),
+    () => deleteReview(swrKeys.reviewItem(review.id)),
+    {
+      onSuccess: () => {
+        mutate(swrKeys.reviewList(params.id as string));
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    }
+  );
+
+  const onDelete = () => {
+    trigger();
+    console.log("Delete review");
   };
 
   return (
@@ -33,7 +47,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
         <StarReviewIcons reviewRating={review.rating} />
         <CloseIcon
           as="button"
-          onClick={() => onDelete(review.id)}
+          onClick={onDelete}
           color="white.100"
           position="absolute"
           right="5"

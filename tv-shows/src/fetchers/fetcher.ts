@@ -7,6 +7,8 @@ export async function fetcher<T>(
   const uid = localStorage.getItem("uid");
   const expiry = localStorage.getItem("expiry");
 
+  let data;
+
   const headers = {
     ...init?.headers,
     "Content-Type": "application/json",
@@ -23,12 +25,18 @@ export async function fetcher<T>(
       headers,
     });
 
+    const isNoContent = response.status === 204;
+
+    if (!isNoContent) {
+      data = response.json();
+    }
+
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-
-    return response.json();
   } catch (error) {
     throw new Error(`Response status: ${error}`);
   }
+
+  return data;
 }
