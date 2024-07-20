@@ -1,4 +1,4 @@
-const apiUrl = "https://tv-shows.infinum.academy/";
+const apiUrl = "https://tv-shows.infinum.academy";
 export const swrKeys = {
   users: `${apiUrl}/users`,
   signIn: `${apiUrl}/users/sign_in`,

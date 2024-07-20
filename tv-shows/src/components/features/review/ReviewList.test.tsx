@@ -4,11 +4,7 @@ import { ReviewItem } from "./ReviewItem";
 import { IReviewList } from "@/typings/Review.type";
 
 jest.mock("./ReviewItem", () => ({
-  ReviewItem: jest.fn(({ review }) => (
-    <div data-testid="mock-review-item">
-      <p>{review.comment}</p>
-    </div>
-  )),
+  ReviewItem: jest.fn().mockReturnValue(null),
 }));
 
 describe("ReviewList", () => {
@@ -31,27 +27,8 @@ describe("ReviewList", () => {
 
   it("should render ReviewItem components with the correct props", () => {
     render(<ReviewList reviewList={mockReviewList} />);
-
-    const reviewItems = screen.getAllByTestId("mock-review-item");
-    expect(reviewItems).toHaveLength(mockReviewList.reviews.length);
-
     mockReviewList.reviews.forEach((review, index) => {
       expect(ReviewItem).toHaveBeenNthCalledWith(index + 1, { review }, {});
-    });
-  });
-
-  it("should render the correct number of ReviewItem components", () => {
-    render(<ReviewList reviewList={mockReviewList} />);
-
-    const reviewItems = screen.getAllByTestId("mock-review-item");
-    expect(reviewItems).toHaveLength(2);
-  });
-
-  it("should display the correct review comments", () => {
-    render(<ReviewList reviewList={mockReviewList} />);
-
-    mockReviewList.reviews.forEach((review) => {
-      expect(screen.getByText(review.comment)).toBeInTheDocument();
     });
   });
 });

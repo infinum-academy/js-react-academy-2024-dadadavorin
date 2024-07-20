@@ -47,6 +47,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
         <CloseIcon
           as="button"
           onClick={onDelete}
+          data-testid="delete-review"
           color="white.100"
           position="absolute"
           right="5"
