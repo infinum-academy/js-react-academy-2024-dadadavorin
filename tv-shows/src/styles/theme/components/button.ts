@@ -2,7 +2,7 @@ import { defineStyleConfig, StyleFunctionProps } from "@chakra-ui/react";
 
 const Button = defineStyleConfig({
   baseStyle: {
-    borderRadius: "buttonRadius",
+    borderRadius: "default",
   },
   sizes: {
     md: {

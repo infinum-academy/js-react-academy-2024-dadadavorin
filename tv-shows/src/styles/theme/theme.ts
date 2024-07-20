@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import Button from "./components/button";
+import { Card } from "./components/card";
 import radii from "./foundations/radius";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -42,6 +43,7 @@ const fontWeights = {
 const theme = extendTheme({
   components: {
     Button,
+    Card,
   },
   colors,
   fonts,

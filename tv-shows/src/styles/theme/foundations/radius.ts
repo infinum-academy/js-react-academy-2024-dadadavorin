@@ -1,5 +1,5 @@
 const radii = {
-  buttonRadius: "24px",
+  default: "24px",
 };
 
 export default radii;

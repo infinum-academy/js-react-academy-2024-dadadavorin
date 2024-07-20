@@ -9,15 +9,12 @@ export interface IShowCardProps {
 
 export const ShowCard = ({ show }: IShowCardProps) => {
   return (
-    <Card
-      as={NextLink}
-      href={`/all-shows/${show.id}`}
-      borderRadius="10"
-      overflow="hidden"
-    >
+    <Card as={NextLink} href={`/all-shows/${show.id}`} overflow="hidden">
       <Image src={show.image_url} alt="Show image" />
       <CardBody>
-        <Text fontWeight="bold">{show.title}</Text>
+        <Text fontWeight="bold" fontSize="xl">
+          {show.title}
+        </Text>
         <Flex alignItems="center">
           <StarIcon size="sm" />
           <Text>
