@@ -6,7 +6,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const baseStyle = definePartsStyle({
   container: {
-    backgroundColor: "white",
+    bg: "white",
     borderRadius: "default",
     overflow: "hidden",
   },
@@ -26,8 +26,11 @@ const baseStyle = definePartsStyle({
 const variants = {
   review: definePartsStyle({
     container: {
-      borderColor: "red",
-      borderWidth: "3px",
+      bg: "purple.primary",
+    },
+    body: {
+      color: "white",
+      padding: "32px 30px",
     },
   }),
 };

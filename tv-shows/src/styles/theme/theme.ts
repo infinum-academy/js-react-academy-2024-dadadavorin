@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import Button from "./components/button";
+import Textarea from "./components/textarea";
 import { Card } from "./components/card";
 import radii from "./foundations/radius";
 import "@fontsource/roboto/400.css";
@@ -44,6 +45,7 @@ const theme = extendTheme({
   components: {
     Button,
     Card,
+    Textarea,
   },
   colors,
   fonts,

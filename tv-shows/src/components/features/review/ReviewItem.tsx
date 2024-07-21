@@ -1,4 +1,4 @@
-import { Text, Card, CardBody } from "@chakra-ui/react";
+import { Text, Card, CardBody, Grid, Box } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { IReview } from "@/typings/Review.type";
 import { StarReviewIcons } from "@/components/shared/stars/StarReviewIcons";
@@ -34,16 +34,38 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
   };
 
   return (
-    <Card
-      flexGrow="1"
-      backgroundColor="gray.300"
-      color="white.100"
-      position="relative"
-    >
+    <Card flexGrow="1" position="relative" variant="review">
       <CardBody>
-        <Text fontWeight="bold">{review.user?.email}</Text>
-        <Text marginBlock="5">{review.comment}</Text>
-        <StarReviewIcons reviewRating={review.rating} />
+        <Grid
+          templateColumns={{ base: "1fr", md: "1fr 2fr" }}
+          columnGap="70px"
+          rowGap="2"
+          templateRows={{ base: "1fr", md: "1fr 1fr" }}
+        >
+          <Text
+            fontWeight="bold"
+            gridRow={{ md: "1 / 2" }}
+            gridColumn={{ md: "1 / 2" }}
+            alignSelf="end"
+          >
+            {review.user?.email}
+          </Text>
+          <Box
+            gridRow={{ md: "2 / 3" }}
+            gridColumn={{ md: "1 / 2" }}
+            alignSelf="start"
+          >
+            <StarReviewIcons reviewRating={review.rating} />
+          </Box>
+          <Text
+            gridRow={{ md: "1 / 3" }}
+            gridColumn={{ md: "2 / 3" }}
+            alignSelf="start"
+          >
+            {review.comment}
+          </Text>
+        </Grid>
+
         <CloseIcon
           as="button"
           onClick={onDelete}
@@ -57,7 +79,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
           borderRadius="lg"
           width="2em"
           height="2em"
-          backgroundColor="gray.200"
+          backgroundColor="purple.light"
           transition="0.1s background-color ease-in-out"
           _hover={{ backgroundColor: "gray.100" }}
         />

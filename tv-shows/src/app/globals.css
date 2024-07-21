@@ -1,6 +1,7 @@
 :root {
   --white-100: #ffffff;
   --purple-primary: #371687;
+  --purple-light: #8d5ce5;
 }
 
 .stars-rating {
@@ -25,14 +26,14 @@
 .rating-icon {
   --current-color: var(--purple-primary);
 
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   display: inline-block;
   pointer-events: none;
 
   &.rating-icon-size-sm {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.4rem;
+    height: 1.4rem;
   }
 
   &.rating-icon-size-md {
@@ -55,29 +56,29 @@
 
 .review-rating {
   .rating-icon {
-    --current-color: var(--white-100);
+    --current-color: var(--purple-light);
 
     width: 1.6rem;
     height: 1.6rem;
   }
 
   &.rating-5 .rating-icon {
-    --current-color: var(--purple-primary);
+    --current-color: var(--white-100);
   }
 
   &.rating-4 .rating-icon:nth-child(-n + 4) {
-    --current-color: var(--purple-primary);
+    --current-color: var(--white-100);
   }
 
   &.rating-3 .rating-icon:nth-child(-n + 3) {
-    --current-color: var(--purple-primary);
+    --current-color: var(--white-100);
   }
 
   &.rating-2 .rating-icon:nth-child(-n + 2) {
-    --current-color: var(--purple-primary);
+    --current-color: var(--white-100);
   }
 
   &.rating-1 .rating-icon:nth-child(-n + 1) {
-    --current-color: var(--purple-primary);
+    --current-color: var(--white-100);
   }
 }

@@ -1,12 +1,12 @@
 import {
   Button,
   Flex,
-  Input,
-  Heading,
   Textarea,
   FormControl,
-  FormLabel,
   FormErrorMessage,
+  Grid,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
@@ -15,7 +15,6 @@ import { swrKeys } from "@/fetchers/swrKeys";
 import { createReview } from "@/fetchers/mutators";
 import { useParams } from "next/navigation";
 import { useSWRConfig } from "swr";
-import { useState } from "react";
 
 export interface IReviewDataParams {
   comment: string;
@@ -56,42 +55,44 @@ export const ShowReviewForm = () => {
   return (
     <Flex
       as="form"
-      gap="8"
+      gap="9"
       flexDirection="column"
       marginBlockEnd="20"
-      backgroundColor="gray.300"
-      color="white.100"
-      borderRadius="lg"
-      padding="8"
       onSubmit={handleSubmit(onSubmit)}
+      width="100%"
+      gridColumn={{ md: "2 / 3" }}
     >
-      <Heading as="h3" size="lg">
-        Add your review
-      </Heading>
-
       <FormControl isInvalid={!!errors.comment}>
-        <FormLabel htmlFor="comment-input">Comment</FormLabel>
         <Textarea
           id="comment-input"
-          variant="flushed"
-          placeholder="Enter review comment"
-          backgroundColor="gray.100"
-          paddingInline="4"
+          placeholder="Enter review"
+          fontSize="xl"
+          variant="white"
           {...register("comment", { required: "Comment is required" })}
         />
         <FormErrorMessage>{errors?.comment?.message}</FormErrorMessage>
       </FormControl>
-
-      <StarsRatingInput register={register} errors={errors} required />
-
-      <Button
-        type="submit"
-        backgroundColor="primary.100"
-        _hover={{ bg: "primary.200" }}
-        isLoading={isSubmitting}
+      <Grid
+        templateColumns="min-content min-content 1fr min-content"
+        templateRows="1fr"
+        alignItems="center"
+        gap="2.5"
       >
-        Add review
-      </Button>
+        <Text fontSize="xl" color="white" paddingLeft="10">
+          Rating
+        </Text>
+        <StarsRatingInput register={register} errors={errors} required />
+        <Box></Box>
+        <Button
+          type="submit"
+          isLoading={isSubmitting}
+          fontSize="sm"
+          variant="white"
+          size="md"
+        >
+          Post
+        </Button>
+      </Grid>
     </Flex>
   );
 };

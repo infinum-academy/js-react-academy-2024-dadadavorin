@@ -1,4 +1,4 @@
-import { defineStyleConfig, StyleFunctionProps } from "@chakra-ui/react";
+import { defineStyleConfig } from "@chakra-ui/react";
 
 const Button = defineStyleConfig({
   baseStyle: {
@@ -6,9 +6,13 @@ const Button = defineStyleConfig({
   },
   sizes: {
     md: {
-      px: 8,
-      py: 4,
-      h: "auto",
+      px: "50px",
+      py: "20px",
+      maxWidth: "min-content",
+      fontSize: "sm",
+      textTransform: "uppercase",
+      height: "auto",
+      borderRadius: "lg",
     },
     sm: {
       py: "2",
