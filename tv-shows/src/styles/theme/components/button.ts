@@ -37,6 +37,7 @@ const Button = defineStyleConfig({
     purple: {
       bg: "purple.primary",
       color: "white",
+      fontWeight: "normal",
 
       _hover: {
         bg: "purple.light",

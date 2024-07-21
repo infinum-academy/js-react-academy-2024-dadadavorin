@@ -1,5 +1,5 @@
 "use client";
-import { Button, Flex, Box, Image } from "@chakra-ui/react";
+import { Button, Flex, Box, Image, Hide } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { mutate } from "swr";
 import { swrKeys } from "../../../fetchers/swrKeys";
@@ -18,28 +18,52 @@ export const SidebarNavigation = () => {
   };
 
   return (
-    <Box position="relative" px="6" py="8">
-      <Image
-        src="images/logo.svg"
-        alt="logo"
-        width="200px"
-        maxW="100%"
-        marginBottom="20"
-      />
-      <Flex direction="column" gap="4" position="sticky" top="0">
-        <Button as={NextLink} href="/all-shows" variant="purpleDark" size="sm">
-          All shows
-        </Button>
+    <Box
+      px={{ base: "2", md: "6" }}
+      py="8"
+      position="sticky"
+      top="0"
+      height={{ base: "100%", md: "80vh" }}
+    >
+      <Hide below="md">
+        <Image
+          src="images/logo.svg"
+          alt="logo"
+          width="200px"
+          maxW="100%"
+          marginBottom="20"
+        />
+      </Hide>
+      <Flex direction="column" height="100%" justifyContent="space-between">
+        <Flex direction="column" gap="4">
+          <Button
+            as={NextLink}
+            href="/all-shows"
+            variant={{ base: "purple", md: "purpleDark" }}
+            size="sm"
+          >
+            All shows
+          </Button>
 
-        <Button as={NextLink} href="/top-rated" variant="purpleDark" size="sm">
-          Top rated
-        </Button>
+          <Button
+            as={NextLink}
+            href="/top-rated"
+            variant={{ base: "purple", md: "purpleDark" }}
+            size="sm"
+          >
+            Top rated
+          </Button>
 
-        <Button variant="purpleDark" size="sm" marginBottom="5">
-          My profile
-        </Button>
+          <Button variant={{ base: "purple", md: "purpleDark" }} size="sm">
+            My profile
+          </Button>
+        </Flex>
 
-        <Button variant="purpleDark" size="sm" onClick={handleLogout}>
+        <Button
+          variant={{ base: "purple", md: "purpleDark" }}
+          size="sm"
+          onClick={handleLogout}
+        >
           Log out
         </Button>
       </Flex>

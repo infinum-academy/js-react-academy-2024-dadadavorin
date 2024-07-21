@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import { Header } from "@/components/shared/header/Header";
-import { Footer } from "@/components/shared/footer/Footer";
-import { Grid } from "@chakra-ui/react";
+import { Box, Grid, Hide } from "@chakra-ui/react";
 import { SidebarNavigation } from "@/components/shared/Sidebar/SidebarNavigation";
+import { MobileHeader } from "@/components/shared/MobileHeader/MobileHeader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Header />
+          <MobileHeader />
           <Grid
             templateColumns={{
               base: "1fr",
@@ -28,10 +27,11 @@ export default function RootLayout({
             }}
             bg="purple.dark"
           >
-            <SidebarNavigation />
+            <Hide below="md">
+              <SidebarNavigation />
+            </Hide>
             {children}
           </Grid>
-          <Footer />
         </Providers>
       </body>
     </html>

@@ -8,7 +8,10 @@ export default function TopRatedPage() {
   return (
     <>
       <AuthRedirect to="/login" condition="loggedOut" />
-      <Box paddingBlock="10" paddingInline="10">
+      <Box
+        paddingBlock={{ base: "6", md: "10" }}
+        paddingInline={{ base: "5", md: "10" }}
+      >
         <ShowsListTopRated />
       </Box>
     </>
