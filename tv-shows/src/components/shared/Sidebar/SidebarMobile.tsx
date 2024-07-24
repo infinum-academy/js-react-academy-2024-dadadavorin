@@ -1,7 +1,6 @@
 "use client";
 import {
   Image,
-  Hide,
   Flex,
   useDisclosure,
   Drawer,
@@ -9,15 +8,15 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  Text,
+  Box,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { SidebarNavigation } from "../Sidebar/SidebarNavigation";
+import { SidebarLinks } from "./SidebarLinks";
 
-export const MobileHeader = () => {
+export const SidebarMobile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Hide above="md">
+    <Box>
       <Flex
         justifyContent="space-between"
         bg="purple.500"
@@ -49,11 +48,11 @@ export const MobileHeader = () => {
             </Flex>
           </DrawerHeader>
 
-          <DrawerBody>
-            <SidebarNavigation />
+          <DrawerBody maxHeight="80vh">
+            <SidebarLinks />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </Hide>
+    </Box>
   );
 };
