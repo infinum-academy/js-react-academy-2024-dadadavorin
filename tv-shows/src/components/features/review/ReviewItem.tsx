@@ -79,7 +79,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
           borderRadius="lg"
           width="2em"
           height="2em"
-          backgroundColor="purple.light"
+          backgroundColor="purple.100"
           transition="0.1s background-color ease-in-out"
           _hover={{ backgroundColor: "gray.100" }}
         />

@@ -9,9 +9,9 @@ const Textarea = defineStyleConfig({
   variants: {
     white: {
       bg: "white",
-      color: "purple.light",
+      color: "purple.100",
       _placeholder: {
-        color: "purple.light",
+        color: "purple.100",
       },
     },
   },

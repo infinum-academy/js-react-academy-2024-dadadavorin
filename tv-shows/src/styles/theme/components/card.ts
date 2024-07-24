@@ -15,7 +15,7 @@ const baseStyle = definePartsStyle({
   },
   body: {
     padding: "18px",
-    color: "purple.primary",
+    color: "purple.300",
   },
   footer: {
     paddingTop: "2px",
@@ -26,7 +26,7 @@ const baseStyle = definePartsStyle({
 const variants = {
   review: definePartsStyle({
     container: {
-      bg: "purple.primary",
+      bg: "purple.300",
     },
     body: {
       color: "white",

@@ -26,31 +26,31 @@ const Button = defineStyleConfig({
   variants: {
     white: {
       bg: "white",
-      color: "purple.primary",
+      color: "purple.300",
 
       _hover: {
-        bg: "purple.light",
+        bg: "purple.100",
         color: "white",
       },
     },
 
     purple: {
-      bg: "purple.primary",
+      bg: "purple.300",
       color: "white",
       fontWeight: "normal",
 
       _hover: {
-        bg: "purple.light",
+        bg: "purple.100",
         color: "white",
       },
     },
     purpleDark: {
-      bg: "purple.dark",
+      bg: "purple.500",
       color: "white",
       fontWeight: "normal",
 
       _hover: {
-        bg: "purple.primary",
+        bg: "purple.300",
         color: "white",
         fontWeight: "medium",
       },

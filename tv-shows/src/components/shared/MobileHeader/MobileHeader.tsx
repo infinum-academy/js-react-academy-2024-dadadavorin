@@ -20,7 +20,7 @@ export const MobileHeader = () => {
     <Hide above="md">
       <Flex
         justifyContent="space-between"
-        bg="purple.dark"
+        bg="purple.500"
         paddingTop="9"
         paddingInline="5"
       >
@@ -34,7 +34,7 @@ export const MobileHeader = () => {
       </Flex>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
         <DrawerOverlay />
-        <DrawerContent bg="purple.primary" mt="6" borderTopLeftRadius="default">
+        <DrawerContent bg="purple.300" mt="6" borderTopLeftRadius="default">
           <DrawerHeader>
             <Flex justifyContent="flex-end">
               <CloseIcon

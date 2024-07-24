@@ -25,7 +25,7 @@ export default function RootLayout({
               base: "1fr",
               md: "1fr 3fr",
             }}
-            bg="purple.dark"
+            bg="purple.500"
           >
             <Hide below="md">
               <SidebarNavigation />
