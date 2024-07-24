@@ -1,6 +1,9 @@
 import { swrKeys } from "./swrKeys";
+import { fetcher } from "./fetcher";
+import { IReviewList } from "@/typings/Review.type";
+import { IReviewDataParams } from "@/components/features/shows/ShowReviewForm/ShowReviewForm";
 
-export async function mutator(url: string, { arg }: { arg: any }) {
+export async function authUser(url: string, { arg }: { arg: any }) {
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
@@ -40,4 +43,17 @@ export async function mutator(url: string, { arg }: { arg: any }) {
   }
 
   return await response.json();
+}
+
+export function createReview(url: string, { arg }: { arg: IReviewDataParams }) {
+  return fetcher(url, {
+    method: "POST",
+    body: JSON.stringify(arg),
+  });
+}
+
+export function deleteReview(url: string) {
+  return fetcher(url, {
+    method: "DELETE",
+  });
 }

@@ -2,13 +2,37 @@ import { Text, Card, CardBody } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { IReview } from "@/typings/Review.type";
 import { StarReviewIcons } from "@/components/shared/stars/StarReviewIcons";
+import { useParams } from "next/navigation";
+import { useSWRConfig } from "swr";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { deleteReview } from "@/fetchers/mutators";
+import useSWRMutation from "swr/mutation";
 
 interface IReviewItemProps {
   review: IReview;
-  onDelete: (review: IReview) => void;
 }
 
-export const ReviewItem = ({ review, onDelete }: IReviewItemProps) => {
+export const ReviewItem = ({ review }: IReviewItemProps) => {
+  const params = useParams();
+  const { mutate } = useSWRConfig();
+
+  const { trigger } = useSWRMutation(
+    swrKeys.reviewItem(review.id),
+    () => deleteReview(swrKeys.reviewItem(review.id)),
+    {
+      onSuccess: () => {
+        mutate(swrKeys.reviewList(params.id as string));
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    }
+  );
+
+  const onDelete = () => {
+    trigger();
+  };
+
   return (
     <Card
       flexGrow="1"
@@ -17,11 +41,13 @@ export const ReviewItem = ({ review, onDelete }: IReviewItemProps) => {
       position="relative"
     >
       <CardBody>
-        <Text fontWeight="bold">{review.title}</Text>
+        <Text fontWeight="bold">{review.user?.email}</Text>
         <Text marginBlock="5">{review.comment}</Text>
         <StarReviewIcons reviewRating={review.rating} />
         <CloseIcon
-          onClick={() => onDelete(review)}
+          as="button"
+          onClick={onDelete}
+          data-testid="delete-review"
           color="white.100"
           position="absolute"
           right="5"

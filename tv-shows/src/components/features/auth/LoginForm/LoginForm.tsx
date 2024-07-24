@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
-import { mutator } from "@/fetchers/mutators";
+import { authUser } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { useSWRConfig } from "swr";
 import NextLink from "next/link";
@@ -30,7 +30,7 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm<ILoginFormInputs>();
   const { mutate } = useSWRConfig();
-  const { trigger } = useSWRMutation(swrKeys.signIn, mutator, {
+  const { trigger } = useSWRMutation(swrKeys.signIn, authUser, {
     onSuccess: (data) => {
       mutate(swrKeys.me, data, false);
     },

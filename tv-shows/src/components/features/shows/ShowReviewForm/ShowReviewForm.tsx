@@ -4,45 +4,53 @@ import {
   Input,
   Heading,
   Textarea,
-  chakra,
   FormControl,
   FormLabel,
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { IReview } from "@/typings/Review.type";
 import { StarsRatingInput } from "@/components/shared/stars/StarsRatingInput";
+import useSWRMutation from "swr/mutation";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { createReview } from "@/fetchers/mutators";
+import { useParams } from "next/navigation";
+import { useSWRConfig } from "swr";
+import { useState } from "react";
 
-interface IReviewFormInputs {
-  title: string;
+export interface IReviewDataParams {
   comment: string;
   rating: number;
+  show_id: number;
 }
 
-interface IReviewFormProps {
-  onAdd: (review: IReview) => Promise<void>;
-}
+export const ShowReviewForm = () => {
+  const params = useParams();
+  const { mutate, cache } = useSWRConfig();
 
-export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<IReviewFormInputs>();
+  } = useForm<IReviewDataParams>();
 
-  const onSubmit = async (data: IReviewFormInputs) => {
-    try {
-      await onAdd({
-        title: data.title,
-        comment: data.comment,
-        rating: data.rating,
-      });
+  const { trigger } = useSWRMutation(swrKeys.reviews, createReview, {
+    onSuccess: async (data) => {
+      const reviewsFromCache = cache.get(
+        swrKeys.reviewList(params.id as string)
+      );
+      await mutate(
+        swrKeys.reviewList(params.id as string),
+        { reviews: [data.review, ...reviewsFromCache?.data.reviews] },
+        false
+      );
       reset();
-    } catch (error) {
-      console.error(error);
-      alert("Failed to submit review. Please try again.");
-    }
+    },
+  });
+
+  const onSubmit = (data: IReviewDataParams) => {
+    data.show_id = Number(params.id);
+    trigger(data);
   };
 
   return (
@@ -61,21 +69,6 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
         Add your review
       </Heading>
 
-      <FormControl isInvalid={!!errors.title}>
-        <FormLabel htmlFor="title-input">Title</FormLabel>
-        <Input
-          id="title-input"
-          placeholder="Enter review title"
-          variant="flushed"
-          backgroundColor="gray.100"
-          paddingInline="4"
-          {...register("title", { required: "Title is required" })}
-        />
-        <FormErrorMessage>
-          {errors.title && errors.title.message}
-        </FormErrorMessage>
-      </FormControl>
-
       <FormControl isInvalid={!!errors.comment}>
         <FormLabel htmlFor="comment-input">Comment</FormLabel>
         <Textarea
@@ -86,9 +79,7 @@ export const ShowReviewForm = ({ onAdd }: IReviewFormProps) => {
           paddingInline="4"
           {...register("comment", { required: "Comment is required" })}
         />
-        <FormErrorMessage>
-          {errors.comment && errors.comment.message}
-        </FormErrorMessage>
+        <FormErrorMessage>{errors?.comment?.message}</FormErrorMessage>
       </FormControl>
 
       <StarsRatingInput register={register} errors={errors} required />

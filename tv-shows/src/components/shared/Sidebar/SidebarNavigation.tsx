@@ -9,11 +9,12 @@ export const SidebarNavigation = () => {
   const router = useRouter();
 
   const handleLogout = () => {
+    console.log("logout");
     localStorage.removeItem("access-token");
     localStorage.removeItem("client");
     localStorage.removeItem("uid");
     localStorage.removeItem("expiry");
-    mutate(swrKeys.me, null, { revalidate: true });
+    mutate(swrKeys.me, null, { revalidate: false });
   };
 
   return (
