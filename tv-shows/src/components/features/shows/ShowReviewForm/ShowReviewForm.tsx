@@ -87,7 +87,7 @@ export const ShowReviewForm = () => {
           type="submit"
           isLoading={isSubmitting}
           fontSize="sm"
-          variant="white"
+          variant="solid"
           size="md"
         >
           Post

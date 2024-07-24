@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import { mutate } from "swr";
 import { swrKeys } from "../../../fetchers/swrKeys";
 import { useRouter } from "next/navigation";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 export const SidebarNavigation = () => {
   const router = useRouter();
@@ -39,7 +40,11 @@ export const SidebarNavigation = () => {
           <Button
             as={NextLink}
             href="/all-shows"
-            variant={{ base: "purple", md: "purpleDark" }}
+            colorScheme={useBreakpointValue({
+              base: "purple",
+              md: "purpleDark",
+            })}
+            variant="solid"
             size="sm"
           >
             All shows
@@ -48,19 +53,31 @@ export const SidebarNavigation = () => {
           <Button
             as={NextLink}
             href="/top-rated"
-            variant={{ base: "purple", md: "purpleDark" }}
+            colorScheme={useBreakpointValue({
+              base: "purple",
+              md: "purpleDark",
+            })}
+            variant="solid"
             size="sm"
           >
             Top rated
           </Button>
 
-          <Button variant={{ base: "purple", md: "purpleDark" }} size="sm">
+          <Button
+            colorScheme={useBreakpointValue({
+              base: "purple",
+              md: "purpleDark",
+            })}
+            size="sm"
+            variant="solid"
+          >
             My profile
           </Button>
         </Flex>
 
         <Button
-          variant={{ base: "purple", md: "purpleDark" }}
+          colorScheme={useBreakpointValue({ base: "purple", md: "purpleDark" })}
+          variant="solid"
           size="sm"
           onClick={handleLogout}
         >

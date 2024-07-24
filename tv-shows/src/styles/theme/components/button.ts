@@ -1,4 +1,4 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig, defineStyle } from "@chakra-ui/react";
 
 const Button = defineStyleConfig({
   baseStyle: {
@@ -24,48 +24,82 @@ const Button = defineStyleConfig({
   },
 
   variants: {
-    white: {
-      bg: "white",
-      color: "purple.300",
+    solid: defineStyle((props) => {
+      const { colorScheme: c } = props;
 
-      _hover: {
-        bg: "purple.100",
-        color: "white",
-      },
-    },
+      if (c === "purple") {
+        return {
+          bg: "purple.300",
+          color: "white",
+          fontWeight: "normal",
 
-    purple: {
-      bg: "purple.300",
-      color: "white",
-      fontWeight: "normal",
+          _hover: {
+            bg: "purple.100",
+            color: "white",
+          },
+        };
+      } else if (c === "purpleDark") {
+        return {
+          bg: "purple.500",
+          color: "white",
+          fontWeight: "normal",
 
-      _hover: {
-        bg: "purple.100",
-        color: "white",
-      },
-    },
-    purpleDark: {
-      bg: "purple.500",
-      color: "white",
-      fontWeight: "normal",
+          _hover: {
+            bg: "purple.300",
+            color: "white",
+            fontWeight: "medium",
+          },
+        };
+      } else {
+        return {
+          bg: "white",
+          color: "purple.300",
 
-      _hover: {
-        bg: "purple.300",
-        color: "white",
-        fontWeight: "medium",
-      },
-    },
+          _hover: {
+            bg: "purple.100",
+            color: "white",
+          },
+        };
+      }
+    }),
+    link: defineStyle((props) => {
+      const { colorScheme: c } = props;
 
-    link: {
-      bg: "transparent",
-      color: "white",
-      fontWeight: "normal",
+      if (c === "purple") {
+        return {
+          bg: "transparent",
+          color: "purple.300",
+          fontWeight: "normal",
 
-      _hover: {
-        bg: "transparent",
-        color: "white",
-      },
-    },
+          _hover: {
+            bg: "transparent",
+            color: "purple.300",
+          },
+        };
+      } else if (c === "purpleLight") {
+        return {
+          bg: "transparent",
+          color: "purple.100",
+          fontWeight: "normal",
+
+          _hover: {
+            bg: "transparent",
+            color: "purple.100",
+          },
+        };
+      } else {
+        return {
+          bg: "transparent",
+          color: "white",
+          fontWeight: "normal",
+
+          _hover: {
+            bg: "transparent",
+            color: "white",
+          },
+        };
+      }
+    }),
   },
 });
 

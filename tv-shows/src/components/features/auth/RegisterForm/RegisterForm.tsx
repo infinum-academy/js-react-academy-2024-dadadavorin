@@ -56,7 +56,7 @@ export const RegisterForm = () => {
         </Flex>
       )}
       {!registered && (
-        <Flex direction="column" gap={3} alignItems="center" color="white.100">
+        <Flex direction="column" gap={3} alignItems="center" color="white">
           <Heading as="h2">Register</Heading>
           <Text marginBottom="5">
             Please enter your desired email and password to register:
@@ -75,7 +75,7 @@ export const RegisterForm = () => {
                 {...register("email", { required: true })}
                 name="email"
                 type="email"
-                bg="white.100"
+                bg="white"
                 color="black"
               />
               <FormErrorMessage>Email is required</FormErrorMessage>
@@ -92,7 +92,7 @@ export const RegisterForm = () => {
                 })}
                 name="password"
                 type="password"
-                bg="white.100"
+                bg="white"
                 color="black"
               />
               <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
@@ -106,14 +106,20 @@ export const RegisterForm = () => {
                 })}
                 name="password_confirmation"
                 type="password"
-                bg="white.100"
+                bg="white"
                 color="black"
               />
               <FormErrorMessage>
                 {errors?.password_confirmation?.message}
               </FormErrorMessage>
             </FormControl>
-            <Button type="submit" colorScheme="yellow" marginTop="5" size="lg">
+            <Button
+              type="submit"
+              colorScheme="purple"
+              variant="solid"
+              marginTop="5"
+              size="lg"
+            >
               Register
             </Button>
           </chakra.form>

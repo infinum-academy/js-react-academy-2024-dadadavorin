@@ -6,15 +6,15 @@ import NextLink from "next/link";
 export default function RegisterPage() {
   return (
     <>
-      <Box bg="gray.200" paddingBlock="10" height="80vh">
+      <Box bg="purple.500" paddingBlock="10" minHeight="100vh">
         <Container>
           <RegisterForm />
-          <Box mt="10" color="white.100" textAlign="center">
+          <Box mt="10" color="white" textAlign="center">
             Already have an account?{" "}
             <Button
               as={NextLink}
               href="/login"
-              colorScheme="yellow"
+              colorScheme="purpleLight"
               variant="link"
             >
               Login
