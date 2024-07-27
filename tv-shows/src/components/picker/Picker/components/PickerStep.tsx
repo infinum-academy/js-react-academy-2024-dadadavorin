@@ -2,10 +2,8 @@ import useSWR from "swr";
 import { PickerContext } from "./PickerContextProvider";
 import { useContext } from "react";
 
-import { Box, Button, Flex, Grid, Spinner, Text } from "@chakra-ui/react";
-import { IShow, IShowList } from "@/typings/Show.type";
-import { fetcher } from "@/fetchers/fetcher";
-import { swrKeys } from "@/fetchers/swrKeys";
+import { Box, Grid, Text } from "@chakra-ui/react";
+import { IShow } from "@/typings/Show.type";
 import { ShowCard } from "@/components/features/shows/ShowCard/ShowCard";
 
 export const PickerStep = () => {
@@ -16,11 +14,8 @@ export const PickerStep = () => {
     return null;
   }
 
-  console.log(selectedShows);
-
   return (
     <>
-      <Text>Current step: {currentStep}</Text>
       <Grid
         templateColumns={{
           base: "repeat(1, 1fr)",

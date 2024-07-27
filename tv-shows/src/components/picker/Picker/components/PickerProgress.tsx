@@ -6,5 +6,5 @@ export const PickerProgress = () => {
   const { currentStep } = useContext(PickerContext);
 
   const progress = (currentStep / 5) * 100;
-  return <Progress value={progress} />;
+  return <Progress value={progress} colorScheme="purple" />;
 };

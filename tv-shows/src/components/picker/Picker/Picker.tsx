@@ -2,6 +2,7 @@
 import {
   Button,
   Flex,
+  Heading,
   Modal,
   ModalBody,
   ModalContent,
@@ -19,18 +20,24 @@ export const Picker = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Show Picker</Button>
+      <Button onClick={onOpen} colorScheme="purple" variant="solid" size="sm">
+        Show Picker
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose} size="2xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Show Picker</ModalHeader>
-          <ModalBody>
+          <ModalHeader bg="purple.300" color="white">
+            <Heading fontSize="2xl" textAlign="center">
+              TV Show Picker
+            </Heading>
+          </ModalHeader>
+          <ModalBody paddingBlock="10">
             <PickerStepper />
           </ModalBody>
           <ModalFooter>
             <Flex direction="column" width="100%" gap={3}>
               <PickerProgress />
-              <PickerButtons />
+              <PickerButtons onClose={onClose} />
             </Flex>
           </ModalFooter>
         </ModalContent>
