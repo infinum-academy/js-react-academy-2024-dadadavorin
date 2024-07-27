@@ -9,6 +9,7 @@ import {
 import NextLink from "next/link";
 import { mutate } from "swr";
 import { swrKeys } from "../../../fetchers/swrKeys";
+import { Picker } from "@/components/picker/Picker/Picker";
 
 export const SidebarLinks = () => {
   const handleLogout = () => {
@@ -59,6 +60,7 @@ export const SidebarLinks = () => {
         >
           My profile
         </Button>
+        <Picker />
       </Flex>
 
       <Button

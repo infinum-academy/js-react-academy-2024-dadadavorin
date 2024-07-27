@@ -2,6 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 import Button from "./components/button";
 import Textarea from "./components/textarea";
 import { Card } from "./components/card";
+import { Modal } from "./components/modal";
 import radii from "./foundations/radius";
 import fonts from "./foundations/fonts";
 import fontSizes from "./foundations/fontSizes";
@@ -16,6 +17,7 @@ const theme = extendTheme({
     Button,
     Card,
     Textarea,
+    Modal,
   },
   colors,
   fonts,

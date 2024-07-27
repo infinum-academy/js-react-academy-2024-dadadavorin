@@ -9,4 +9,5 @@ export const swrKeys = {
   reviewList: (id: string) => `${apiUrl}/shows/${id}/reviews`,
   showItem: (id: string) => `${apiUrl}/shows/${id}`,
   reviewItem: (id: string) => `${apiUrl}/reviews/${id}`,
+  showsParams: (params: string) => `${apiUrl}/shows?${params}`,
 };

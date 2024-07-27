@@ -5,11 +5,18 @@ import { IShow } from "@/typings/Show.type";
 
 export interface IShowCardProps {
   show: IShow;
+  isSelected?: boolean;
+  onSelect?: () => void;
+  disableLink?: boolean;
 }
 
-export const ShowCard = ({ show }: IShowCardProps) => {
+export const ShowCard = ({ show, disableLink }: IShowCardProps) => {
   return (
-    <Card as={NextLink} href={`/all-shows/${show.id}`}>
+    <Card
+      as={NextLink}
+      href={`/all-shows/${show.id}`}
+      pointerEvents={disableLink ? "none" : "all"}
+    >
       <Image src={show.image_url} alt="Show image" />
       <CardBody>
         <Text fontWeight="bold" fontSize="xl">
