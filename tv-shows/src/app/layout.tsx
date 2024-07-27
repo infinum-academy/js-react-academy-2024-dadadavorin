@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import { Grid, Hide } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { Sidebar } from "@/components/shared/Sidebar/Sidebar";
 import "./globals.css";
 

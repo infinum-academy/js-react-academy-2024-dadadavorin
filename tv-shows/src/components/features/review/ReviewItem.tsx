@@ -81,7 +81,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
           height="2em"
           backgroundColor="purple.100"
           transition="0.1s background-color ease-in-out"
-          _hover={{ backgroundColor: "gray.100" }}
+          _hover={{ backgroundColor: "purple.500" }}
         />
       </CardBody>
     </Card>
