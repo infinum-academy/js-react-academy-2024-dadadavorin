@@ -74,7 +74,13 @@ export const LoginForm = () => {
           />
           <FormErrorMessage>Password is required</FormErrorMessage>
         </FormControl>
-        <Button type="submit" colorScheme="yellow" size="lg" marginTop="5">
+        <Button
+          type="submit"
+          variant="solid"
+          colorScheme="purple"
+          size="lg"
+          marginTop="5"
+        >
           Login
         </Button>
       </chakra.form>
@@ -84,8 +90,8 @@ export const LoginForm = () => {
           <Button
             as={NextLink}
             href="/register"
-            colorScheme="yellow"
             variant="link"
+            colorScheme="purpleLight"
           >
             Register
           </Button>

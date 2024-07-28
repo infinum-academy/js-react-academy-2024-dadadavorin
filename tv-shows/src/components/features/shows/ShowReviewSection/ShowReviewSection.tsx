@@ -1,7 +1,6 @@
 "use client";
-import { Box, Spinner } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { IReviewList, IReview } from "@/typings/Review.type";
+import { Box, Flex, Grid, Spinner, Text } from "@chakra-ui/react";
+import { IReviewList } from "@/typings/Review.type";
 import { ReviewList } from "../../review/ReviewList";
 import { ShowReviewForm } from "../ShowReviewForm/ShowReviewForm";
 import { ShowDetailsContainer } from "../ShowDetails/ShowDetailsContainer";
@@ -32,10 +31,25 @@ export const ShowReviewSection = () => {
   };
 
   return (
-    <Box bg="gray.200" p={4}>
+    <Box p={4}>
       <ShowDetailsContainer />
-      <ShowReviewForm />
-      <ReviewList reviewList={reviewList} />
+      <Grid
+        columnGap="4"
+        templateColumns={{ base: "1fr", md: "2fr 9fr" }}
+        gridTemplateRows="1fr"
+        marginTop="24"
+      >
+        <Text
+          color="white"
+          fontSize="2xl"
+          gridColumn={{ md: "1 / 2" }}
+          marginBottom={{ base: "6", md: "0" }}
+        >
+          Reviews
+        </Text>
+        <ShowReviewForm />
+        <ReviewList reviewList={reviewList} />
+      </Grid>
     </Box>
   );
 };
