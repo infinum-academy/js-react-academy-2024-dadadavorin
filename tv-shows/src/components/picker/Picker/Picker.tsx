@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { PickerButtons } from "./components/PickerButtons";
@@ -20,7 +21,15 @@ export const Picker = () => {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="purple" variant="solid" size="sm">
+      <Button
+        onClick={onOpen}
+        colorScheme={useBreakpointValue({
+          base: "purple",
+          md: "purpleDark",
+        })}
+        variant="solid"
+        size="sm"
+      >
         Show Picker
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} size="2xl">
