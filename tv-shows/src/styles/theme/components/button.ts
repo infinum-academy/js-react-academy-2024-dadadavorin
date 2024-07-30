@@ -10,7 +10,6 @@ const Button = defineStyleConfig({
       py: "20px",
       maxWidth: "min-content",
       fontSize: "sm",
-      textTransform: "uppercase",
       height: "auto",
       borderRadius: "lg",
     },
@@ -54,6 +53,8 @@ const Button = defineStyleConfig({
         return {
           bg: "white",
           color: "purple.300",
+          fontWeight: "medium",
+          textTransform: "uppercase",
 
           _hover: {
             bg: "purple.100",

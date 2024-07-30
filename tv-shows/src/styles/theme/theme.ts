@@ -3,6 +3,7 @@ import Button from "./components/button";
 import Textarea from "./components/textarea";
 import { Card } from "./components/card";
 import { Modal } from "./components/modal";
+import { Input } from "./components/input";
 import radii from "./foundations/radius";
 import fonts from "./foundations/fonts";
 import fontSizes from "./foundations/fontSizes";
@@ -18,6 +19,7 @@ const theme = extendTheme({
     Card,
     Textarea,
     Modal,
+    Input,
   },
   colors,
   fonts,

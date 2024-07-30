@@ -17,18 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <Grid
-            templateColumns={{
-              base: "1fr",
-              md: "1fr 3fr",
-            }}
-            bg="purple.500"
-          >
-            <Sidebar />
-            {children}
-          </Grid>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

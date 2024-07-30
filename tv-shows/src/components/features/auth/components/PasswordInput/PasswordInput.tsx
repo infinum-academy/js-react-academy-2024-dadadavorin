@@ -5,9 +5,10 @@ import {
   FormLabel,
   Input,
   InputGroup,
+  InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { LockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
 interface IPasswordInputProps {
@@ -28,27 +29,31 @@ export const PasswordInput = ({
 
   return (
     <FormControl isInvalid={!!errors[fieldName]}>
-      <FormLabel>Password</FormLabel>
       <InputGroup>
+        <InputLeftElement pointerEvents="none">
+          <LockIcon color="white" marginLeft="4" fontSize="18" marginTop="3" />
+        </InputLeftElement>
         <Input
           {...register(fieldName, props)}
           type={show ? "text" : "password"}
-          bg="white.100"
-          color="black"
+          placeholder="Password"
+          variant="outline"
           name={fieldName}
         />
         <InputRightElement width="4.5rem">
           {show ? (
             <ViewOffIcon
               onClick={handleClick}
-              color="purple.300"
+              color="white"
               cursor="pointer"
+              marginTop="3"
             />
           ) : (
             <ViewIcon
               onClick={handleClick}
-              color="purple.300"
+              color="white"
               cursor="pointer"
+              marginTop="3"
             />
           )}
         </InputRightElement>

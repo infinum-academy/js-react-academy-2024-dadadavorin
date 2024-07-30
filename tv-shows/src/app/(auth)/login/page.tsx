@@ -6,11 +6,7 @@ export default function LoginPage() {
   return (
     <>
       <AuthRedirect to="/all-shows" condition="loggedIn" />
-      <Box bg="purple.500" color="white" paddingBlock="10" minHeight="100vh">
-        <Container>
-          <LoginForm />
-        </Container>
-      </Box>
+      <LoginForm />
     </>
   );
 }

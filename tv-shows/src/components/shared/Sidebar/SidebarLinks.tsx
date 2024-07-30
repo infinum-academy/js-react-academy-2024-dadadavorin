@@ -22,7 +22,6 @@ export const SidebarLinks = () => {
   });
 
   const handleLogout = () => {
-    console.log("logout");
     localStorage.removeItem("access-token");
     localStorage.removeItem("client");
     localStorage.removeItem("uid");
