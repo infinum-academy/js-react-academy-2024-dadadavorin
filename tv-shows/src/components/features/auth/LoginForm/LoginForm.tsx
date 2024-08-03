@@ -17,6 +17,7 @@ import { authUser } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { useSWRConfig } from "swr";
 import NextLink from "next/link";
+import { PasswordInput } from "../components/PasswordInput/PasswordInput";
 
 interface ILoginFormInputs {
   email: string;
@@ -62,18 +63,14 @@ export const LoginForm = () => {
           />
           <FormErrorMessage>Email is required</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.password}>
-          <FormLabel>Password</FormLabel>
-          <Input
-            {...register("password", {
-              required: true,
-            })}
-            type="password"
-            bg="white.100"
-            color="black"
-          />
-          <FormErrorMessage>Password is required</FormErrorMessage>
-        </FormControl>
+        <PasswordInput
+          register={register}
+          errors={errors}
+          fieldName="password"
+          props={{
+            required: "Password is required",
+          }}
+        />
         <Button
           type="submit"
           variant="solid"

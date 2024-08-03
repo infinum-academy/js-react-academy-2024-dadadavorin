@@ -17,6 +17,7 @@ import useSWRMutation from "swr/mutation";
 import { authUser } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import NextLink from "next/link";
+import { PasswordInput } from "../components/PasswordInput/PasswordInput";
 
 interface IRegisterFormInputs {
   email: string;
@@ -80,39 +81,29 @@ export const RegisterForm = () => {
               />
               <FormErrorMessage>Email is required</FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={!!errors.password}>
-              <FormLabel>Password</FormLabel>
-              <Input
-                {...register("password", {
-                  required: "You must specify a password",
-                  minLength: {
-                    value: 8,
-                    message: "Password must have at least 8 characters",
-                  },
-                })}
-                name="password"
-                type="password"
-                bg="white"
-                color="black"
-              />
-              <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={!!errors.password_confirmation}>
-              <FormLabel>Confirm Password</FormLabel>
-              <Input
-                {...register("password_confirmation", {
-                  validate: (value) =>
-                    value === password || "The passwords do not match",
-                })}
-                name="password_confirmation"
-                type="password"
-                bg="white"
-                color="black"
-              />
-              <FormErrorMessage>
-                {errors?.password_confirmation?.message}
-              </FormErrorMessage>
-            </FormControl>
+            <PasswordInput
+              register={register}
+              errors={errors}
+              fieldName="password"
+              props={{
+                required: "You must specify a password",
+                minLength: {
+                  value: 8,
+                  message: "Password must have at least 8 characters",
+                },
+              }}
+            />
+
+            <PasswordInput
+              register={register}
+              errors={errors}
+              fieldName="password_confirmation"
+              props={{
+                validate: (value: string) =>
+                  value === password || "The passwords do not match",
+              }}
+            />
+
             <Button
               type="submit"
               colorScheme="purple"
