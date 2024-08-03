@@ -1,19 +1,27 @@
-import {
-  Button,
-  Flex,
-  Box,
-  Image,
-  Hide,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Button, Flex, useBreakpointValue } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { mutate } from "swr";
 import { swrKeys } from "../../../fetchers/swrKeys";
 import { Picker } from "@/components/picker/Picker/Picker";
+import { usePathname } from "next/navigation";
 
 export const SidebarLinks = () => {
+  const currentPath = usePathname();
+
+  // Function to check if the route is active
+  const isActive = (path: string) => currentPath === path;
+
+  // Define color scheme for active and default states
+  const defaultColorScheme = useBreakpointValue({
+    base: "purple",
+    md: "purpleDark",
+  });
+  const activeColorScheme = useBreakpointValue({
+    base: "purpleLight",
+    md: "purple",
+  });
+
   const handleLogout = () => {
-    console.log("logout");
     localStorage.removeItem("access-token");
     localStorage.removeItem("client");
     localStorage.removeItem("uid");
@@ -27,10 +35,9 @@ export const SidebarLinks = () => {
         <Button
           as={NextLink}
           href="/all-shows"
-          colorScheme={useBreakpointValue({
-            base: "purple",
-            md: "purpleDark",
-          })}
+          colorScheme={
+            isActive("/all-shows") ? activeColorScheme : defaultColorScheme
+          }
           variant="solid"
           size="sm"
         >
@@ -40,10 +47,9 @@ export const SidebarLinks = () => {
         <Button
           as={NextLink}
           href="/top-rated"
-          colorScheme={useBreakpointValue({
-            base: "purple",
-            md: "purpleDark",
-          })}
+          colorScheme={
+            isActive("/top-rated") ? activeColorScheme : defaultColorScheme
+          }
           variant="solid"
           size="sm"
         >

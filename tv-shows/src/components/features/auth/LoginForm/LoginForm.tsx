@@ -10,6 +10,9 @@ import {
   chakra,
   Text,
   Box,
+  InputGroup,
+  InputLeftElement,
+  Image,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
@@ -18,6 +21,7 @@ import { swrKeys } from "@/fetchers/swrKeys";
 import { useSWRConfig } from "swr";
 import NextLink from "next/link";
 import { PasswordInput } from "../components/PasswordInput/PasswordInput";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 
 interface ILoginFormInputs {
   email: string;
@@ -42,9 +46,25 @@ export const LoginForm = () => {
   };
 
   return (
-    <Flex direction="column" gap={3} alignItems="center" color="white.100">
-      <Heading as="h2">Login</Heading>
-      <Text>Please login using your credentials</Text>
+    <Flex
+      direction="column"
+      gap={3}
+      alignItems="center"
+      color="white.100"
+      bg="purple.300"
+      padding="14"
+      borderRadius={{ base: "0", md: "default" }}
+      maxW="500px"
+      width="100%"
+      flexGrow="1"
+    >
+      <Image
+        src="images/logo.svg"
+        alt="logo"
+        width="200px"
+        maxW="100%"
+        marginBottom="14"
+      />
       <chakra.form
         width="100%"
         display="flex"
@@ -54,13 +74,23 @@ export const LoginForm = () => {
         onSubmit={handleSubmit(onLogin)}
       >
         <FormControl isInvalid={!!errors.email}>
-          <FormLabel>Email</FormLabel>
-          <Input
-            {...register("email", { required: true })}
-            type="email"
-            bg="white.100"
-            color="black"
-          />
+          <InputGroup marginBottom="5">
+            <InputLeftElement pointerEvents="none">
+              <EmailIcon
+                color="white"
+                marginLeft="4"
+                fontSize="18"
+                marginTop="3"
+              />
+            </InputLeftElement>
+            <Input
+              {...register("email", { required: true })}
+              type="email"
+              variant="outline"
+              borderRadius="lg"
+              placeholder="Email"
+            />
+          </InputGroup>
           <FormErrorMessage>Email is required</FormErrorMessage>
         </FormControl>
         <PasswordInput
@@ -74,11 +104,11 @@ export const LoginForm = () => {
         <Button
           type="submit"
           variant="solid"
-          colorScheme="purple"
-          size="lg"
-          marginTop="5"
+          colorScheme="white"
+          size="md"
+          marginTop="10"
         >
-          Login
+          Log in
         </Button>
       </chakra.form>
       <Box mt="10">
@@ -88,7 +118,8 @@ export const LoginForm = () => {
             as={NextLink}
             href="/register"
             variant="link"
-            colorScheme="purpleLight"
+            colorScheme="white"
+            fontWeight="bold"
           >
             Register
           </Button>
